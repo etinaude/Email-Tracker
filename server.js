@@ -8,33 +8,60 @@ var file = "database.db";
 var db = new sqlite3.Database(file);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+// /\/api\/v1\/images\/*/
 
-app.get("/api/v1/image/*", (req, res) => {
-  var sql = `SELECT * FROM Email WHERE *`;
+app.get(/\/api\/v1\/images\/*/, (req, res) => {
+  id = "id" + req.url.split("/id")[1];
+  var sql = `SELECT * FROM Trackers where key = "${id}"`;
 
-  db.all(sql, [], (err, rows) => {
+  db.all(sql, [], (err, data) => {
     if (err) {
       throw err;
     }
+    console.log(data);
+    res.json(data);
+  });
+});
 
-    res.json(list);
+app.get("/api/v1/openimage/id1600938965116", (req, res) => {
+  id = "id" + req.url.split("/id")[1];
+  var sql = `SELECT * FROM Trackers where key = "${id}"`;
+
+  db.all(sql, [], (err, data) => {
+    if (err) {
+      throw err;
+    }
+    console.log(data);
+    res.json(data);
+  });
+});
+
+app.get("/api/v1/all", (req, res) => {
+  var sql = `SELECT * FROM Trackers`;
+
+  db.all(sql, [], (err, data) => {
+    if (err) {
+      throw err;
+    }
+    console.log(data);
+    res.json(data);
   });
 });
 
 app.post("/api/v1/submit", (req, res) => {
-  console.log(req);
-  res.json("hi");
-  //console.log(JSON.parse("{0:" + req.body[0] + "}"));
+  var inp = JSON.parse(req.body[0]);
 
-  //var sql = `INSERT INTO Email (${time}, ${title}, ${time}, "", "")`;
+  var sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES ('${inp.key}', '${inp.title}', '${inp.date}', '${inp.opens}', '${inp.sent}', '${inp.type}')`;
 
-  //db.all(sql, [], (err, rows) => {});
-  //res.sendStatus(200);
+  db.all(sql, [], (err, rows) => {
+    if (err) console.log(err);
+  });
+  res.sendStatus(200);
 });
 
 app.get("/", (req, res) => {});
 
 app.listen(port, () => {
-  console.log(`purity test running at http://localhost:${port}`);
+  console.log(`Tracker running at http://localhost:${port}`);
   //res.send("test");
 });

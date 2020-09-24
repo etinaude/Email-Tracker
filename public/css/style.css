@@ -1,6 +1,6 @@
 :root {
   --main: rgb(96, 255, 157);
-  --body: rgb(96, 255, 157);
+  --body: rgb(66, 66, 66);
 }
 
 * {
@@ -11,6 +11,14 @@
 body {
   background-color: var(--body);
 }
+
+.cMain {
+  color: var(--main);
+}
+.white {
+  color: white;
+}
+
 #modal {
   display: none;
   background-color: #10101050;
@@ -38,6 +46,29 @@ body {
 #describe {
   font-size: 25pt;
   text-align: center;
+}
+th,
+td {
+  text-align: left;
+}
+tr {
+  width: 100%;
+  margin: 0;
+}
+table {
+  margin: 5%;
+  width: 90%;
+}
+th {
+  background-color: var(--main);
+}
+
+.table1 {
+  background-color: #bbb;
+}
+
+.table0 {
+  background-color: #ddd;
 }
 /* Hide the browser's default checkbox */
 /* Create a custom checkbox */
@@ -102,4 +133,15 @@ li {
 ::-webkit-scrollbar-thumb {
   background: var(--main);
   border-radius: 10px;
+}
+
+button {
+  background-color: var(--main); /* Green */
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
