@@ -18,21 +18,20 @@ app.get(/\/api\/v1\/images\/*/, (req, res) => {
     if (err) {
       throw err;
     }
-    console.log(data);
+    //console.log(data);
     res.json(data);
   });
 });
 
-app.get("/api/v1/openimage/id1600938965116", (req, res) => {
+app.get(/\/api\/v1\/openimage\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1];
-  var sql = `SELECT * FROM Trackers where key = "${id}"`;
+  var sql = `UPDATE Trackers SET opens = opens+1 where key = "${id}"`;
 
   db.all(sql, [], (err, data) => {
     if (err) {
       throw err;
     }
-    console.log(data);
-    res.json(data);
+    res.json(`<svg></svg>`);
   });
 });
 

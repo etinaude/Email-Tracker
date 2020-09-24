@@ -7,10 +7,19 @@
   </head>
   <body>
     <h1 class="title white">Tracker</h1>
-    <button onclick="newImage()">new</button>
-    <button onclick="getImage()">get</button>
-    <button onclick="getAll()">all</button>
-    <button onclick="openImage()">open</button>
+    <div id="btn">
+      <button onclick="newImage()">new</button>
+      <button onclick="getImage()">get</button>
+      <!--
+      <button onclick="getAll()">all</button>
+      -->
+      <button onclick="openImage()">open</button>
+    </div>
+    <div id="form">
+      <input type="text" placeholder="Title" />
+      <input type="text" placeholder="To" />
+      <input type="text" placeholder="Type" />
+    </div>
     <div id="table"></div>
     <div id="modal" onclick="closeModal()">
       <div id="content" onclick="closeModal()">
@@ -26,6 +35,7 @@
         <div id="score"></div>
       </div>
     </div>
-    <script src="./js/script.js"></script>
+    <img src="http://localhost:3000/api/v1/openimage/id1600947613902" />
+    <script src="./js/script.js" defer></script>
   </body>
 </html>

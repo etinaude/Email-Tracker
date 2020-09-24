@@ -9,8 +9,8 @@ function newImage() {
     title: title,
     date: t,
     opens: 0,
-    sent: "me",
-    type: "Email",
+    sent: "",
+    type: "Tracker",
   });
 
   fetch("http://localhost:3000/api/v1/submit", {
@@ -73,7 +73,7 @@ async function makeTable() {
             <th>Date</th>
             <th>Title</th>
             <th>Open</th>
-            <th>Sent</th>
+            <th>Sent To</th>
             <th>Type</th>
           </tr>
           <tbody>`;
@@ -81,6 +81,7 @@ async function makeTable() {
   trackers = await getAll();
   console.log(trackers);
   trackers.forEach((e) => {
+    console.log(e.opens);
     count += 1;
     sstr += `
     <tr class="table${count % 2}">
