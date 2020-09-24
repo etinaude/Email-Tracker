@@ -9,22 +9,9 @@
     <h1 class="title">Tracker</h1>
     <div id="list">
       <ol id="question-list"></ol>
-
-      <input
-        class="button"
-        id="submit"
-        type="submit"
-        value="Calculate My Score!"
-        onclick="score()"
-      />
-      <input
-        class="button"
-        type="submit"
-        id="reset"
-        onclick="clearBox()"
-        value="Clear Answers"
-      />
     </div>
+    <button onclick="newImage()">new</button>
+    <button onclick="getImage()">get</button>
     <div id="modal" onclick="closeModal()">
       <div id="content" onclick="closeModal()">
         <div id="describe"></div>

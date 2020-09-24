@@ -1,12 +1,30 @@
-function create() {
+function newImage() {
+  var d = new Date();
+  var t = d.getTime();
+  var key = "a" + t;
+  var title = "email title";
+  var str = {
+    key: key,
+    title: title,
+    date: t,
+    opens: 0,
+    Sent: "me",
+    Type: "Email",
+  };
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://localhost:3000/api/v1/submit");
+  xhr.send("data");
+
+  /*
   fetch("http://localhost:3000/api/v1/submit", {
     method: "POST",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
     },
 
     body: str,
-  })
+  }); /*
     .then((response) => response.json())
     .then((total) => {
       display(total);
@@ -23,8 +41,8 @@ function clearBox() {
     items[i].getElementsByClassName("box");
   }
 }
-function get_image() {
-  fetch("http://localhost:3000/api/v1/questions", {
+function getImage() {
+  fetch("http://localhost:3000/api/v1/submit/images/*", {
     headers: new Headers({
       Accept: "application/json",
     }),

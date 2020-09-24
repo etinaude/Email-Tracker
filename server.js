@@ -10,7 +10,6 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/api/v1/image/*", (req, res) => {
-  var time = Date.getTime();
   var sql = `SELECT * FROM Email WHERE *`;
 
   db.all(sql, [], (err, rows) => {
@@ -23,9 +22,14 @@ app.get("/api/v1/image/*", (req, res) => {
 });
 
 app.post("/api/v1/submit", (req, res) => {
-  var sql = `INSERT INTO Email (${time}, "title", "date", "", "")`;
+  console.log(req);
+  res.json("hi");
+  //console.log(JSON.parse("{0:" + req.body[0] + "}"));
 
-  db.all(sql, [], (err, rows) => {});
+  //var sql = `INSERT INTO Email (${time}, ${title}, ${time}, "", "")`;
+
+  //db.all(sql, [], (err, rows) => {});
+  //res.sendStatus(200);
 });
 
 app.get("/", (req, res) => {});
