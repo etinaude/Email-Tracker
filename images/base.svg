@@ -11,11 +11,14 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="9.9999997e-06"
    height="9.9999997e-06"
-   viewBox="0 0 2.6458332e-06 2.6458332e-06"
+   viewBox="0 0 2.6458328e-06 2.6458331e-06"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="base.svg">
+   sodipodi:docname="base.svg"
+   inkscape:export-filename="/home/etinaude/Documents/git/tracker/images/base.png"
+   inkscape:export-xdpi="17.200001"
+   inkscape:export-ydpi="17.200001">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="256"
-     inkscape:cx="0.8600202"
-     inkscape:cy="0.97764523"
+     inkscape:zoom="5.6568543"
+     inkscape:cx="-39.795607"
+     inkscape:cy="29.435561"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"

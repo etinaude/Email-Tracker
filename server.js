@@ -1,4 +1,5 @@
 const express = require("express");
+var path = "/images/base.png";
 var bodyParser = require("body-parser");
 var sqlite3 = require("sqlite3").verbose();
 const app = express();
@@ -24,15 +25,15 @@ app.get(/\/api\/v1\/images\/*/, (req, res) => {
 });
 
 app.get(/\/api\/v1\/openimage\/*/, (req, res) => {
-  id = "id" + req.url.split("/id")[1];
+  id = "id" + req.url.split("/id")[1].replace(".png", "");
   var sql = `UPDATE Trackers SET opens = opens+1 where key = "${id}"`;
 
   db.all(sql, [], (err, data) => {
     if (err) {
       throw err;
     }
-    res.json(`<svg></svg>`);
   });
+  res.sendFile(__dirname + path);
 });
 
 app.get("/api/v1/all", (req, res) => {
@@ -42,7 +43,7 @@ app.get("/api/v1/all", (req, res) => {
     if (err) {
       throw err;
     }
-    console.log(data);
+    //console.log(data);
     res.json(data);
   });
 });

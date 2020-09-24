@@ -2,15 +2,17 @@ function newImage() {
   var d = new Date();
   var t = `${d.getDay()}.${d.getMonth()}.${d.getFullYear()}-${d.getHours()}:${d.getMinutes()} `;
   var key = "id" + d.getTime();
-  var title = "email title";
+  var title = document.getElementById("title").value;
+  var to = document.getElementById("to").value;
+  var type = document.getElementById("type").value;
 
   var str = JSON.stringify({
     key: key,
     title: title,
     date: t,
     opens: 0,
-    sent: "",
-    type: "Tracker",
+    sent: to,
+    type: type,
   });
 
   fetch("http://localhost:3000/api/v1/submit", {
