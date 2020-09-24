@@ -1,0 +1,3 @@
+{
+  "ignore": ["**/public/", ".git", "node_modules"]
+}

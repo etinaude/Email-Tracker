@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/png" href="./images/logo.png" />
+    <title>Golden Rice Purity Test</title>
+  </head>
+  <body>
+    <h1 class="title">Golden Rice Purity Test</h1>
+    <div id="list">
+      <ol id="question-list"></ol>
+
+      <input
+        class="button"
+        id="submit"
+        type="submit"
+        value="Calculate My Score!"
+        onclick="score()"
+      />
+      <input
+        class="button"
+        type="submit"
+        id="reset"
+        onclick="clearBox()"
+        value="Clear Answers"
+      />
+    </div>
+    <div id="modal" onclick="closeModal()">
+      <div id="content" onclick="closeModal()">
+        <div id="describe"></div>
+        <div><br /><br /><br /><br /></div>
+        <div id="stats">
+          <svg
+            id="metric"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 400 230"
+          ></svg>
+        </div>
+        <div id="score"></div>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
