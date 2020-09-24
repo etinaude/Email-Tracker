@@ -9,62 +9,23 @@ var db = new sqlite3.Database(file);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/api/v1/questions", (req, res) => {
-  var sql = `SELECT * FROM "Answers" `;
-
-  var list = [];
+app.get("/api/v1/image/*", (req, res) => {
+  var time = Date.getTime();
+  var sql = `SELECT * FROM Email WHERE *`;
 
   db.all(sql, [], (err, rows) => {
     if (err) {
       throw err;
     }
-    rows.forEach((row) => {
-      list.push({ id: row.ID, question: row.Question, count: row.Count });
-    });
-    //console.log(list);
+
     res.json(list);
   });
 });
 
 app.post("/api/v1/submit", (req, res) => {
-  list = JSON.parse("[" + req.body[0] + "]");
-  console.log(list);
-  for (var i = 0; i < list.length; i++) {
-    var sql = `UPDATE Answers SET Count = Count + 1 WHERE ID=${list[i]}`;
-    db.all(sql, [], (err, rows) => {
-      if (err) {
-        throw err;
-      }
-    });
-  }
-  info = [];
-  tot = 0;
-  high = 0;
-  max = 0;
-  var sql = `SELECT * FROM "Answers" `;
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      throw err;
-    }
-    rows.forEach((row) => {
-      info.push({ id: row.ID, count: row.Count });
-    });
-    info.forEach((i) => {
-      if (i["count"] > max) {
-        max = i["count"];
-      }
-    });
-    info.forEach((i) => {
-      let scr = (1 - i["count"] / max) * 3 + 0.5;
-      if (list.includes(i["id"])) {
-        tot += scr;
-      }
-      high += scr;
-    });
-    if (tot < 0) tot = 0;
-    if (tot > 100) tot = 100;
-    res.json(Math.round(100 - tot));
-  });
+  var sql = `INSERT INTO Email (${time}, "title", "date", "", "")`;
+
+  db.all(sql, [], (err, rows) => {});
 });
 
 app.get("/", (req, res) => {});
