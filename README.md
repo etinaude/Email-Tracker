@@ -1,2 +1,3 @@
-# tracker
-Email, website and github tracker
+# Tracker
+
+A basic email, website and github tracker
