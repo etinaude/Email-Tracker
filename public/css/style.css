@@ -105,15 +105,7 @@ input:checked:hover {
 .box:focus {
   outline: none;
 }
-.button {
-  border: none;
-  padding: 1%;
-  border-radius: 2px;
-  background-color: #eeeeee;
-}
-.button:hover {
-  background-color: #cccccc;
-}
+
 .title {
   margin-left: 3%;
 }
@@ -142,6 +134,16 @@ li {
   border-radius: 10px;
 }
 
+.button {
+  border: none;
+  padding: 1%;
+  border-radius: 2px;
+  background-color: #eeeeee;
+}
+button:hover {
+  background-color: #cccccc;
+}
+
 button {
   background-color: var(--main); /* Green */
   border: none;
@@ -151,6 +153,14 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+.reset {
+  padding: 7px 20px;
+  margin: 0px;
+}
+
+.c1 {
+  width: 200px;
 }
 
 #btn {

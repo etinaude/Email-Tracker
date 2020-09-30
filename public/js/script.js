@@ -1,4 +1,5 @@
 var ip = "http://207.148.83.171:3001";
+ip = "http://localhost:3001";
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}.${d.getMonth()}.${d.getFullYear()}-${d.getHours()}:${d.getMinutes()} `;
@@ -24,19 +25,14 @@ function newImage() {
 
     body: `0=${str}`,
   });
+  makeTable();
 }
 
 function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-function clearBox() {
-  items = document.getElementsByClassName("question");
-  for (let index = 0; index < questions.length; index++) {
-    items[i].getElementsByClassName("box");
-  }
-}
-
+/*
 function getImage() {
   fetch(`${ip}/api/v1/images/id1600938965116`, {
     headers: new Headers({
@@ -56,6 +52,25 @@ function openImage() {
     .then((response) => response.json())
     .then((tracker) => { });
 }
+*/
+
+function resetImage(id) {
+  fetch(`${ip}/api/v1/reset/${id}`, {
+    headers: new Headers({
+      Accept: "application/json",
+    }),
+  });
+  makeTable();
+}
+
+function removeImage(id) {
+  fetch(`${ip}/api/v1/remove/${id}`, {
+    headers: new Headers({
+      Accept: "application/json",
+    }),
+  });
+  makeTable();
+}
 
 async function getAll() {
   const response = await fetch(`${ip}/api/v1/all`, {
@@ -69,6 +84,7 @@ async function getAll() {
 async function makeTable() {
   sstr = `<table>
           <tr>
+            <th>Control</th>
             <th>ID</th>
             <th>Date</th>
             <th>Title</th>
@@ -85,6 +101,10 @@ async function makeTable() {
     count += 1;
     sstr += `
     <tr class="table${count % 2}">
+    <td class="c1"><button class="reset" onclick="resetImage('${
+      e.key
+    }')">Reset</button>
+    <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
     <td>${e.key}</td>
     <td>${e.date}</td>
     <td>${e.title}</td>
