@@ -1,5 +1,5 @@
 var ip = "http://207.148.83.171:3001";
-ip = "http://localhost:3001";
+//ip = "http://localhost:3001";
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
