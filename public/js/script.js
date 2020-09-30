@@ -2,7 +2,7 @@ var ip = "http://207.148.83.171:3001";
 ip = "http://localhost:3001";
 function newImage() {
   var d = new Date();
-  var t = `${d.getDay()}.${d.getMonth()}.${d.getFullYear()}-${d.getHours()}:${d.getMinutes()} `;
+  var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
   var key = "id" + d.getTime();
   var title = document.getElementById("title").value;
   var to = document.getElementById("to").value;
@@ -105,7 +105,7 @@ async function makeTable() {
       e.key
     }')">Reset</button>
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
-    <td>${e.key}</td>
+    <td onclick="copy('${e.key}')">${e.key}</td>
     <td>${e.date}</td>
     <td>${e.title}</td>
     <td>${e.opens}</td>
@@ -116,6 +116,16 @@ async function makeTable() {
   });
 
   document.getElementById("table").innerHTML = "</tbody>" + sstr;
+}
+
+function copy(id) {
+  var copyText = `${ip}/api/v1/openimage/${id}.png`;
+  /* Select the text field */
+  //copyText.select();
+  //copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
 }
 
 makeTable();
