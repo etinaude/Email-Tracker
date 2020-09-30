@@ -1,14 +1,16 @@
-const express = require("express");
-var path = "/images/base.png";
 var bodyParser = require("body-parser");
+const express = require("express");
 var sqlite3 = require("sqlite3").verbose();
+var cors = require('cors')
+var path = "/images/base.png";
 const app = express();
-const port = 3000;
+const port = 3001;
 
 var file = "database.db";
 var db = new sqlite3.Database(file);
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 // /\/api\/v1\/images\/*/
 
 app.get(/\/api\/v1\/images\/*/, (req, res) => {
@@ -59,7 +61,7 @@ app.post("/api/v1/submit", (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => { });
 
 app.listen(port, () => {
   console.log(`Tracker running at http://localhost:${port}`);

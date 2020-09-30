@@ -1,3 +1,4 @@
+var ip = "http://207.148.83.171:3001";
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}.${d.getMonth()}.${d.getFullYear()}-${d.getHours()}:${d.getMinutes()} `;
@@ -15,7 +16,7 @@ function newImage() {
     type: type,
   });
 
-  fetch("http://localhost:3000/api/v1/submit", {
+  fetch(`${ip}/api/v1/submit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -37,33 +38,30 @@ function clearBox() {
 }
 
 function getImage() {
-  fetch("http://localhost:3000/api/v1/images/id1600938965116", {
+  fetch(`${ip}/api/v1/images/id1600938965116`, {
     headers: new Headers({
       Accept: "application/json",
     }),
-    mode: "no-cors",
   })
     .then((response) => response.json())
-    .then((tracker) => {});
+    .then((tracker) => { });
 }
 
 function openImage() {
-  fetch("http://localhost:3000/api/v1/openimage/id1600938965116", {
+  fetch(`${ip}/api/v1/openimage/id1600938965116`, {
     headers: new Headers({
       Accept: "application/json",
     }),
-    mode: "no-cors",
   })
     .then((response) => response.json())
-    .then((tracker) => {});
+    .then((tracker) => { });
 }
 
 async function getAll() {
-  const response = await fetch("http://localhost:3000/api/v1/all", {
+  const response = await fetch(`${ip}/api/v1/all`, {
     headers: new Headers({
       Accept: "application/json",
     }),
-    mode: "no-cors",
   });
   return response.json();
 }
