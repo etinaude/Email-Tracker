@@ -5,6 +5,7 @@ var cors = require("cors");
 var path = "/images/base.png";
 const app = express();
 const port = 3001;
+const BASE = "/tracker/api/v1/"
 
 var file = "database.db";
 var db = new sqlite3.Database(file);
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 // /\/api\/v1\/images\/*/
 
-app.get(/\/api\/v1\/images\/*/, (req, res) => {
+app.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1];
   var sql = `SELECT * FROM Trackers where key = "${id}"`;
 
@@ -26,7 +27,7 @@ app.get(/\/api\/v1\/images\/*/, (req, res) => {
   });
 });
 
-app.get(/\/api\/v1\/openimage\/*/, (req, res) => {
+app.get(/\tracker\/api\/v1\/openimage\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1].replace(".png", "");
   var sql = `UPDATE Trackers SET opens = opens+1 where key = "${id}"`;
 
@@ -38,7 +39,7 @@ app.get(/\/api\/v1\/openimage\/*/, (req, res) => {
   res.sendFile(__dirname + path);
 });
 
-app.get("/api/v1/all", (req, res) => {
+app.get(`${BASE}all`, (req, res) => {
   var sql = `SELECT * FROM Trackers`;
 
   db.all(sql, [], (err, data) => {
@@ -50,7 +51,7 @@ app.get("/api/v1/all", (req, res) => {
   });
 });
 
-app.get(/\/api\/v1\/reset\/*/, (req, res) => {
+app.get(/\/tracker\/api\/v1\/reset\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1].replace(".png", "");
   var sql = `UPDATE Trackers SET opens = 0 where key = "${id}"`;
 
@@ -62,7 +63,7 @@ app.get(/\/api\/v1\/reset\/*/, (req, res) => {
   res.sendFile(__dirname + path);
 });
 
-app.get(/\/api\/v1\/remove\/*/, (req, res) => {
+app.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1];
   var sql = `DELETE FROM Trackers WHERE key = "${id}"`;
 
@@ -74,7 +75,7 @@ app.get(/\/api\/v1\/remove\/*/, (req, res) => {
   res.sendFile(__dirname + path);
 });
 
-app.post("/api/v1/submit", (req, res) => {
+app.post(`${BASE}submit`, (req, res) => {
   var inp = JSON.parse(req.body[0]);
 
   var sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES ('${inp.key}', '${inp.title}', '${inp.date}', '${inp.opens}', '${inp.sent}', '${inp.type}')`;
@@ -85,7 +86,7 @@ app.post("/api/v1/submit", (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => { });
 
 app.listen(port, () => {
   console.log(`Tracker running at http://localhost:${port}`);

@@ -1,9 +1,14 @@
-var ip = "http://207.148.83.171:3001";
+var ip = "http://207.148.83.171/tracker/api/v1/";
 //ip = "http://localhost:3001";
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
-  var key = "id" + d.getTime();
+  var key = "";
+  if (document.getElementById("id").value) {
+    key = "id" + document.getElementById("id").value
+  } else {
+    key = "id" + d.getTime();
+  }
   var title = document.getElementById("title").value;
   var to = document.getElementById("to").value;
   var type = document.getElementById("type").value;
@@ -17,7 +22,7 @@ function newImage() {
     type: type,
   });
 
-  fetch(`${ip}/api/v1/submit`, {
+  fetch(`${ip}submit`, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -55,7 +60,7 @@ function openImage() {
 */
 
 function resetImage(id) {
-  fetch(`${ip}/api/v1/reset/${id}`, {
+  fetch(`${ip}reset/${id}`, {
     headers: new Headers({
       Accept: "application/json",
     }),
@@ -64,7 +69,7 @@ function resetImage(id) {
 }
 
 function removeImage(id) {
-  fetch(`${ip}/api/v1/remove/${id}`, {
+  fetch(`${ip}remove/${id}`, {
     headers: new Headers({
       Accept: "application/json",
     }),
@@ -73,7 +78,7 @@ function removeImage(id) {
 }
 
 async function getAll() {
-  const response = await fetch(`${ip}/api/v1/all`, {
+  const response = await fetch(`${ip}all`, {
     headers: new Headers({
       Accept: "application/json",
     }),
@@ -101,9 +106,8 @@ async function makeTable() {
     count += 1;
     sstr += `
     <tr class="table${count % 2}">
-    <td class="c1"><button class="reset" onclick="resetImage('${
-      e.key
-    }')">Reset</button>
+    <td class="c1"><button class="reset" onclick="resetImage('${e.key
+      }')">Reset</button>
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
     <td onclick="copy('${e.key}')">${e.key}</td>
     <td>${e.date}</td>
@@ -119,7 +123,7 @@ async function makeTable() {
 }
 
 function copy(id) {
-  var copyText = `${ip}/api/v1/openimage/${id}.png`;
+  var copyText = `${ip}openimage/${id}.png`;
   /* Select the text field */
   //copyText.select();
   //copyText.setSelectionRange(0, 99999); /*For mobile devices*/

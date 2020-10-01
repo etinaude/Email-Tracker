@@ -1,44 +1,43 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="icon" type="image/png" href="./images/logo.png" />
-    <title>Tracker</title>
-  </head>
 
-  <body>
-    <h1 class="title white">Tracker</h1>
-    <div id="btn">
-      <button onclick="newImage()">new</button>
-      <button onclick="getImage()">get</button>
-      <!--
+<head>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" type="image/png" href="./images/logo.png" />
+  <title>Tracker</title>
+</head>
+
+<body>
+  <h1 class="title white">Tracker</h1>
+  <div id="btn">
+    <button onclick="newImage()">new</button>
+    <!--
+    <button onclick="getImage()">get</button>
+  
       <button onclick="getAll()">all</button>
-      -->
-      <button onclick="openImage()">open</button>
-    </div>
-    <div id="form">
-      <input id="title" type="text" placeholder="Title" />
-      <input id="to" type="text" placeholder="To" />
-      <input id="type" type="text" placeholder="Type" />
-    </div>
-    <div id="table"></div>
-    <div id="modal" onclick="closeModal()">
-      <div id="content" onclick="closeModal()">
-        <div id="describe"></div>
-        <div><br /><br /><br /><br /></div>
-        <div id="stats">
-          <svg
-            id="metric"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 400 230"
-          ></svg>
-        </div>
-        <div id="score"></div>
+      
+    <button onclick="openImage()">open</button>
+    -->
+  </div>
+  <div id="form">
+    <input id="title" type="text" placeholder="Title" />
+    <input id="to" type="text" placeholder="To" />
+    <input id="type" type="text" placeholder="Type" />
+    <input id="id" type="text" placeholder="id" />
+  </div>
+  <div id="table"></div>
+  <div id="modal" onclick="closeModal()">
+    <div id="content" onclick="closeModal()">
+      <div id="describe"></div>
+      <div><br /><br /><br /><br /></div>
+      <div id="stats">
+        <svg id="metric" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 230"></svg>
       </div>
+      <div id="score"></div>
     </div>
-    <img
-      src="http://207.148.83.171:3001/api/v1/openimage/id1601465728336.png"
-    />
-    <script src="./js/script.js" defer></script>
-  </body>
+  </div>
+  <img src="http://207.148.83.171:3001/tracker/api/v1/openimage/id1601465728336.png" />
+  <script src="./js/script.js" defer></script>
+</body>
+
 </html>
