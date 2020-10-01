@@ -27,7 +27,7 @@ app.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
   });
 });
 
-app.get(/\tracker\/api\/v1\/openimage\/*/, (req, res) => {
+app.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1].replace(".png", "");
   var sql = `UPDATE Trackers SET opens = opens+1 where key = "${id}"`;
 

@@ -68,6 +68,7 @@ table {
 }
 th {
   background-color: var(--main);
+  padding-left: 0.5%;
 }
 
 .table1 {
