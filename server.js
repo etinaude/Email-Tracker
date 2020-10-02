@@ -2,19 +2,20 @@ var bodyParser = require("body-parser");
 const express = require("express");
 var sqlite3 = require("sqlite3").verbose();
 var cors = require("cors");
-var path = "/images/base.png";
-const app = express();
-const port = 3001;
+const PATH = "/images/base.png";
+const INDEX = "/public/index.html"
+const APP = express();
+const PORT = 3001;
 const BASE = "/tracker/api/v1/"
 
 var file = "database.db";
 var db = new sqlite3.Database(file);
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+APP.use(express.static("public"));
+APP.use(bodyParser.urlencoded({ extended: true }));
+APP.use(cors());
 // /\/api\/v1\/images\/*/
 
-app.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
+APP.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1];
   var sql = `SELECT * FROM Trackers where key = "${id}"`;
 
@@ -27,7 +28,7 @@ app.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
   });
 });
 
-app.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
+APP.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1].replace(".png", "");
   var sql = `UPDATE Trackers SET opens = opens+1 where key = "${id}"`;
 
@@ -36,10 +37,10 @@ app.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
       throw err;
     }
   });
-  res.sendFile(__dirname + path);
+  res.sendFile(__dirname + PATH);
 });
 
-app.get(`${BASE}all`, (req, res) => {
+APP.get(`${BASE}all`, (req, res) => {
   var sql = `SELECT * FROM Trackers`;
 
   db.all(sql, [], (err, data) => {
@@ -51,7 +52,7 @@ app.get(`${BASE}all`, (req, res) => {
   });
 });
 
-app.get(/\/tracker\/api\/v1\/reset\/*/, (req, res) => {
+APP.get(/\/tracker\/api\/v1\/reset\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1].replace(".png", "");
   var sql = `UPDATE Trackers SET opens = 0 where key = "${id}"`;
 
@@ -60,10 +61,10 @@ app.get(/\/tracker\/api\/v1\/reset\/*/, (req, res) => {
       throw err;
     }
   });
-  res.sendFile(__dirname + path);
+  res.sendFile(__dirname + PATH);
 });
 
-app.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
+APP.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
   id = "id" + req.url.split("/id")[1];
   var sql = `DELETE FROM Trackers WHERE key = "${id}"`;
 
@@ -72,10 +73,10 @@ app.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
       throw err;
     }
   });
-  res.sendFile(__dirname + path);
+  res.sendFile(__dirname + PATH);
 });
 
-app.post(`${BASE}submit`, (req, res) => {
+APP.post(`${BASE}submit`, (req, res) => {
   var inp = JSON.parse(req.body[0]);
 
   var sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES ('${inp.key}', '${inp.title}', '${inp.date}', '${inp.opens}', '${inp.sent}', '${inp.type}')`;
@@ -86,9 +87,12 @@ app.post(`${BASE}submit`, (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/", (req, res) => { });
+APP.get("/tracker", (req, res) => {
+  res.sendFile(__dirname + INDEX);
 
-app.listen(port, () => {
-  console.log(`Tracker running at http://localhost:${port}`);
+});
+
+APP.listen(PORT, () => {
+  console.log(`Tracker running at http://localhost:${PORT}`);
   //res.send("test");
 });
