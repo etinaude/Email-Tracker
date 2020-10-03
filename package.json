@@ -13,11 +13,13 @@
     "sqlite3": "^5.0.0",
     "yaml": "^1.10.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.4.2"
+  },
   "scripts": {
     "test": "echo test",
     "start": "nodemon --watch server"
   },
-  "author": "",
+  "author": "Etienne Naude",
   "license": "ISC"
 }
