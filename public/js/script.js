@@ -1,4 +1,4 @@
-var ip = "http://207.148.83.171/tracker/api/v1/";
+var ip = "https://207.148.83.171/tracker/api/v1/";
 //ip = "http://localhost:3001";
 function newImage() {
   var d = new Date();
