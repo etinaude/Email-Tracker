@@ -37,6 +37,11 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
+function modal(id) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("content").innerHTML = "<h2>History</h2>";
+}
+
 /*
 function getImage() {
   fetch(`${ip}/api/v1/images/id1600938965116`, {
@@ -106,13 +111,12 @@ async function makeTable() {
     count += 1;
     sstr += `
     <tr class="table${count % 2}">
-    <td class="c1"><button class="reset" onclick="resetImage('${
-      e.key
-    }')">Reset</button>
+    <td class="c1"><button class="reset" onclick="resetImage('${e.key
+      }')">Reset</button>
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
     <td onclick="copy('${e.key}')">${e.key}</td>
     <td>${e.date}</td>
-    <td>${e.title}</td>
+    <td  onclick="modal(${e.id})">${e.title}</td>
     <td>${e.opens}</td>
     <td>${e.sent}</td>
     <td>${e.type}</td>
