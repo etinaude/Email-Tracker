@@ -63,12 +63,14 @@ tr {
   margin: 0;
 }
 table {
-  margin: 5%;
+  margin: 0 0 0 5%;
   width: 90%;
 }
 th {
   background-color: var(--main);
   padding-left: 0.5%;
+  text-justify: auto;
+  text-align: center;
 }
 
 .table1 {
@@ -97,12 +99,20 @@ th {
   background-color: #aaaaaa;
 }
 
-input:checked {
-  background-color: var(--main);
+input {
+  background-color: #949494;
+  margin: 0 0 10px 0;
+  color: white;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
 }
-input:checked:hover {
-  background-color: var(--main);
+input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
 }
+
 .box:focus {
   outline: none;
 }
@@ -154,10 +164,11 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin: 5px 5px 0 0;
 }
 .reset {
   padding: 7px 20px;
-  margin: 0px;
+  margin: 3px;
 }
 
 .c1 {

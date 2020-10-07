@@ -5,7 +5,7 @@ function newImage() {
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
   var key = "";
   if (document.getElementById("id").value) {
-    key = "id" + document.getElementById("id").value
+    key = "id" + document.getElementById("id").value;
   } else {
     key = "id" + d.getTime();
   }
@@ -106,8 +106,9 @@ async function makeTable() {
     count += 1;
     sstr += `
     <tr class="table${count % 2}">
-    <td class="c1"><button class="reset" onclick="resetImage('${e.key
-      }')">Reset</button>
+    <td class="c1"><button class="reset" onclick="resetImage('${
+      e.key
+    }')">Reset</button>
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
     <td onclick="copy('${e.key}')">${e.key}</td>
     <td>${e.date}</td>

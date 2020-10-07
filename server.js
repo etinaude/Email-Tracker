@@ -3,7 +3,7 @@ const express = require("express");
 var sqlite3 = require("sqlite3").verbose();
 var cors = require("cors");
 const PATH = "/images/base.png";
-const INDEX = "/public/index.html"
+const INDEX = "/public/index.html";
 const APP = express();
 const PORT = 3000;
 const BASE = "/tracker/api/v1/"
@@ -89,7 +89,6 @@ APP.post(`${BASE}submit`, (req, res) => {
 
 APP.get("/tracker", (req, res) => {
   res.sendFile(__dirname + INDEX);
-
 });
 
 APP.listen(PORT, () => {
