@@ -1,5 +1,5 @@
-var ip = "https://207.148.83.171/tracker/api/v1/";
-//ip = "http://localhost:3001";
+//var ip = "https://207.148.83.171/tracker/api/v1/";
+ip = "http://localhost:3001/tracker/api/v1/";
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
@@ -37,9 +37,24 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-function modal(id) {
+async function modal(id) {
   document.getElementById("modal").style.display = "block";
-  document.getElementById("content").innerHTML = "<h2>History</h2>";
+  var h = await history(id);
+  var strr = "<h2>Open</h2>"
+  h.forEach(e => {
+    const d = new Date(parseInt(e["date"]) * 1000)
+    strr += `${d.getDate()} - ${d.getMonth()} at ${d.getHours()}.${d.getMinutes()} <br>`
+  })
+  document.getElementById("content").innerHTML = strr;
+}
+
+async function history(id) {
+  const res = await fetch(`${ip}history/${id}`, {
+    headers: new Headers({
+      Accept: "application/json",
+    }),
+  });
+  return res.json();
 }
 
 /*
@@ -82,6 +97,7 @@ function removeImage(id) {
   makeTable();
 }
 
+
 async function getAll() {
   const response = await fetch(`${ip}all`, {
     headers: new Headers({
@@ -116,7 +132,7 @@ async function makeTable() {
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
     <td onclick="copy('${e.key}')">${e.key}</td>
     <td>${e.date}</td>
-    <td  onclick="modal(${e.id})">${e.title}</td>
+    <td  onclick="modal('${e.key}')">${e.title}</td>
     <td>${e.opens}</td>
     <td>${e.sent}</td>
     <td>${e.type}</td>
