@@ -29,10 +29,8 @@ body {
 #modal {
   display: none;
   background-color: #10101050;
-  width: 100%;
-  height: 100%;
-  padding-top: 5%;
-  padding-left: 30%;
+  width: 100vw;
+  height: 100vh;
   z-index: 1;
   position: fixed;
   left: 0%;
@@ -40,12 +38,18 @@ body {
 }
 #content {
   background-color: #fff;
-  width: 10%;
-  left: 40%;
-  top: 20%;
-  padding: 5% 10% 10% 10%;
-  border-radius: 20px;
+  width: 90vw;
+  margin: 5vh;
+  height: 80vh;
+  padding: 5vh 10vh 10vh 10vh;
+  border-radius: 10px;
 }
+
+#close{
+  width: 5%;
+  height: 5%;
+}
+
 #score {
   font-size: 30pt;
   text-align: center;

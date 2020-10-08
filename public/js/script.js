@@ -40,13 +40,50 @@ function closeModal() {
 async function modal(id) {
   document.getElementById("modal").style.display = "block";
   var h = await history(id);
-  var strr = "<h2>Open</h2>"
+  var openDates = []
+
+  var mstart = formateDate(new Date(new Date().getFullYear(), new Date().getMonth(), 1).getTime());
+  var days = {}
   h.forEach(e => {
-    const d = new Date(parseInt(e["date"]) * 1000)
-    strr += `${d.getDate()} - ${d.getMonth()} at ${d.getHours()}.${d.getMinutes()} <br>`
+    const d = formateDate(e["date"])
+    if (days.hasOwnProperty(d)) {
+      days[d] += 1
+    } else {
+      days[d] = 1
+    }
   })
-  document.getElementById("content").innerHTML = strr;
+  for (const [key, value] of Object.entries(days)) {
+    console.log([key, value])
+    openDates.push({ title: `${value}`, start: key })
+  }
+  //document.getElementById("content").innerHTML = strr;
+
+  var calendarEl = document.getElementById('calendar');
+  //'2020-09-12'
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    headerToolbar: {
+      left: 'prevYear,prev,next,nextYear today',
+      center: 'title'
+    },
+    initialDate: mstart,
+    navLinks: true, // can click day/week names to navigate views
+    editable: true,
+    dayMaxEvents: true, // allow "more" link when too many events
+    events: openDates
+  });
+
+  calendar.render();
 }
+
+
+function formateDate(pre) {
+  const d = new Date(parseInt(pre))
+  const day = `${d.getDate()}`.length == 1 ? `0${d.getDate()}` : `${d.getDate()}`
+  const month = `${d.getMonth()}`.length == 1 ? `0${d.getMonth()}` : `${d.getMonth()}`
+  const year = d.getFullYear()
+  return `${year}-${month}-${day}`
+}
+
 
 async function history(id) {
   const res = await fetch(`${ip}history/${id}`, {
@@ -121,7 +158,7 @@ async function makeTable() {
           <tbody>`;
   var count = 0;
   trackers = await getAll();
-  console.log(trackers);
+  //console.log(trackers);
   trackers.forEach((e) => {
     console.log(e.opens);
     count += 1;
