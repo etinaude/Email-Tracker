@@ -5,7 +5,7 @@ var cors = require("cors");
 const PATH = "/images/base.png";
 const INDEX = "/public/index.html";
 const APP = express();
-const PORT = 3001;
+const PORT = 3000;
 const BASE = "/tracker/api/v1/"
 
 var file = "database.db";
