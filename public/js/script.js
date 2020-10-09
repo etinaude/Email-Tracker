@@ -1,5 +1,8 @@
 var ip = "https://207.148.83.171/tracker/api/v1/";
 //ip = "http://localhost:3001/tracker/api/v1/";
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
@@ -69,7 +72,9 @@ async function modal(id) {
     navLinks: true, // can click day/week names to navigate views
     editable: true,
     dayMaxEvents: true, // allow "more" link when too many events
-    events: openDates
+    events: openDates,
+    height: 0.7 * vh,
+    aspectRatio: 1,
   });
 
   calendar.render();

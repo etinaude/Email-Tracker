@@ -41,8 +41,12 @@ body {
   width: 90vw;
   margin: 5vh;
   height: 80vh;
-  padding: 5vh 10vh 10vh 10vh;
+  padding: 5vh 2vw 5vh 2vw;
   border-radius: 10px;
+}
+
+#calendar{
+  width: 80vw;
 }
 
 #close{
