@@ -12,21 +12,14 @@
 <body>
   <h1 class="title white">Tracker</h1>
   <div id="btn">
-    <button onclick="newImage()">new</button>
-    <button onclick="myFunction()">test</button>
-    <!--
-    <button onclick="getImage()">get</button>
-  
-      <button onclick="getAll()">all</button>
-      
-    <button onclick="openImage()">open</button>
-    -->
   </div>
+  <button id="showBtn" onclick="showInp()">Show</button>
   <div id="form">
-    <input id="title" type="text" placeholder="Title" />
-    <input id="to" type="text" placeholder="To" />
-    <input id="type" type="text" placeholder="Type" />
-    <input id="id" type="text" placeholder="id" />
+    <input class="inp" id="title" type="text" placeholder="Title" />
+    <input class="inp" id="to" type="text" placeholder="To" />
+    <input class="inp" id="type" type="text" placeholder="Type" />
+    <input class="inp" id="id" type="text" placeholder="id" />
+    <button class="inp" onclick="newImage()">new</button>
   </div>
   <div id="table"></div>
   <div id="modal" onclick="closeModal()">
