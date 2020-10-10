@@ -1,0 +1,3 @@
+[submodule "gmail.js"]
+	path = gmail.js
+	url = git@github.com:KartikTalwar/gmail.js.git
