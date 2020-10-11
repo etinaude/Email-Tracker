@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-//var ip = "https://207.148.83.171/tracker/api/v1/";
-//ip = "http://localhost:3001/tracker/api/v1/";
-var ip = "https://etvps.tk/tracker/api/v1/";
-=======
 var ip = "https://etvps.tk/tracker/api/v1/";
 //ip = "http://localhost:3001/tracker/api/v1/";
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
->>>>>>> 356f21a06a4bf69fffb5bbdb75a920c1c9cff6da
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
