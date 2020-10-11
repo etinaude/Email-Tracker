@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 //var ip = "https://207.148.83.171/tracker/api/v1/";
 //ip = "http://localhost:3001/tracker/api/v1/";
 var ip = "https://etvps.tk/tracker/api/v1/";
+=======
+var ip = "https://etvps.tk/tracker/api/v1/";
+//ip = "http://localhost:3001/tracker/api/v1/";
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+>>>>>>> 356f21a06a4bf69fffb5bbdb75a920c1c9cff6da
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
@@ -70,7 +78,9 @@ async function modal(id) {
     navLinks: true, // can click day/week names to navigate views
     editable: true,
     dayMaxEvents: true, // allow "more" link when too many events
-    events: openDates
+    events: openDates,
+    height: 0.7 * vh,
+    aspectRatio: 1,
   });
 
   calendar.render();
@@ -168,7 +178,7 @@ async function makeTable() {
     <td class="c1"><button class="reset" onclick="resetImage('${e.key
       }')">Reset</button>
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
-    <td onclick="copy('${e.key}')">${e.key}</td>
+    <td onclick="copy('copy${e.key}')">${e.key} <input class="near-hidden" id="copy${e.key}" type="text" value="${ip}openimage/${e.key}.png" /> </td>
     <td>${e.date}</td>
     <td  onclick="modal('${e.key}')">${e.title}</td>
     <td>${e.opens}</td>
@@ -181,14 +191,19 @@ async function makeTable() {
   document.getElementById("table").innerHTML = "</tbody>" + sstr;
 }
 
-function copy(id) {
-  var copyText = `${ip}openimage/${id}.png`;
-  /* Select the text field */
-  //copyText.select();
-  //copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-  /* Copy the text inside the text field */
+function copy(dom) {
+
+  var copyText = document.getElementById(dom);
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
   document.execCommand("copy");
+  copyText.style.display = "none"
+}
+
+function showInp() {
+  document.getElementById("form").style.display = "flex"
+  document.getElementById("showBtn").style.display = "none"
 }
 
 makeTable();
