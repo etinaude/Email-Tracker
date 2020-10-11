@@ -21,9 +21,19 @@ body {
 #form {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  padding: 5%;
-  padding-top: 1%;
+  padding: 1% 0% 2% 3%;
+  margin: 2% 2% 1% 5%;
+  border:  1px solid grey;
+  width: 25vw;
+  display: none;
+}
+
+.inp{
+  width: 20vw;
+}
+
+#showBtn{
+  margin: 2% 2% 1% 5%;
 }
 
 #modal {

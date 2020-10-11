@@ -1,4 +1,4 @@
-var ip = "https://207.148.83.171/tracker/api/v1/";
+var ip = "https://etvps.tk/tracker/api/v1/";
 //ip = "http://localhost:3001/tracker/api/v1/";
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -172,7 +172,7 @@ async function makeTable() {
     <td class="c1"><button class="reset" onclick="resetImage('${e.key
       }')">Reset</button>
     <button class="reset" onclick="removeImage('${e.key}')">Remove</button></td>
-    <td onclick="copy('copy${e.key}')">${e.key} <input class="near-hidden" id="copy${e.key}" type="text" value="${e.key}" /> </td>
+    <td onclick="copy('copy${e.key}')">${e.key} <input class="near-hidden" id="copy${e.key}" type="text" value="${ip}openimage/${e.key}.png" /> </td>
     <td>${e.date}</td>
     <td  onclick="modal('${e.key}')">${e.title}</td>
     <td>${e.opens}</td>
@@ -185,8 +185,6 @@ async function makeTable() {
   document.getElementById("table").innerHTML = "</tbody>" + sstr;
 }
 
-makeTable();
-
 
 function copy(dom) {
 
@@ -196,3 +194,10 @@ function copy(dom) {
   document.execCommand("copy");
   copyText.style.display = "none"
 }
+
+function showInp() {
+  document.getElementById("form").style.display = "flex"
+  document.getElementById("showBtn").style.display = "none"
+}
+
+makeTable();
