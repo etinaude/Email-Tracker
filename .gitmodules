@@ -1,0 +1,3 @@
+[submodule "gmail.js"]
+	path = gmail.js
+	url = ./gmail.js

@@ -1,5 +1,6 @@
-var ip = "https://207.148.83.171/tracker/api/v1/";
+//var ip = "https://207.148.83.171/tracker/api/v1/";
 //ip = "http://localhost:3001/tracker/api/v1/";
+var ip = "https://etvps.tk/tracker/api/v1/";
 function newImage() {
   var d = new Date();
   var t = `${d.getDay()}/${d.getMonth()}/${d.getFullYear()} - ${d.getHours()}:${d.getMinutes()} `;
