@@ -9,6 +9,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mysql": "^2.18.1",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.4",
     "sqlite3": "^5.0.0",
     "yaml": "^1.10.0"
@@ -17,7 +18,7 @@
     "jest": "^26.5.2"
   },
   "scripts": {
-    "test": "npm tests/testMain.js",
+    "test": "jest",
     "start": "nodemon --watch server"
   },
   "author": "Etienne Naude",

@@ -1,4 +1,4 @@
-var ip = "https://207.148.83.171/tracker/api/v1/";
+var ip = "https://etvps.tk/tracker/api/v1/";
 //ip = "http://localhost:3001/tracker/api/v1/";
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
