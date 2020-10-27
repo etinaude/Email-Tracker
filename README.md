@@ -2,4 +2,4 @@
 
 A basic email, website and github tracker
 
-why did another user get direct commit rights?
+**This is a currently work in progress**
