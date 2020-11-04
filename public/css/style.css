@@ -21,18 +21,26 @@ body {
 #form {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  padding: 5%;
-  padding-top: 1%;
+  padding: 1% 0% 2% 3%;
+  margin: 2% 2% 1% 5%;
+  border:  1px solid grey;
+  width: 25vw;
+  display: none;
+}
+
+.inp{
+  width: 20vw;
+}
+
+#showBtn{
+  margin: 2% 2% 1% 5%;
 }
 
 #modal {
   display: none;
   background-color: #10101050;
-  width: 100%;
-  height: 100%;
-  padding-top: 5%;
-  padding-left: 30%;
+  width: 100vw;
+  height: 100vh;
   z-index: 1;
   position: fixed;
   left: 0%;
@@ -40,12 +48,53 @@ body {
 }
 #content {
   background-color: #fff;
-  width: 10%;
-  left: 40%;
-  top: 20%;
-  padding: 5% 10% 10% 10%;
-  border-radius: 20px;
+  width: 90vw;
+  margin: 5vh;
+  height: 80vh;
+  padding: 5vh 2vw 5vh 2vw;
+  border-radius: 10px;
 }
+
+.near-hidden{
+  width: 10px;
+  height: 10px;
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+  color: #00000000;
+}
+
+.near-hidden::selection{
+ color: #00000000;
+ border: none; 
+ outline: none;
+-webkit-appearance: none;
+
+}
+.near-hidden::after{
+  color: #00000000;
+  border: none; 
+  outline: none;
+ -webkit-appearance: none;
+}
+.near-hidden select{
+  color: #00000000;
+  border: none; 
+  outline: none;
+ -webkit-appearance: none;
+ 
+}
+
+#calendar{
+  width: 80vw;
+}
+
+#close{
+  width: 5%;
+  height: 5%;
+}
+
 #score {
   font-size: 30pt;
   text-align: center;
