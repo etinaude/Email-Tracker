@@ -1,19 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-title> Inbox </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large"> Inbox </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <table mat-table [dataSource]="myDataArray">
-      ...
-    </table>
-  </div>
+  <ion-row class="header-row">
+    <ion-col size="2">control</ion-col>
+    <ion-col size="2">ID</ion-col>
+    <ion-col size="2">Date</ion-col>
+    <ion-col size="2">Title</ion-col>
+    <ion-col size="2">Opens</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let row of datas; let i = index;">
+    <ion-col size="2"></ion-col>
+    <ion-col size="2">{{row.key}}</ion-col>
+    <ion-col size="2">{{row.date}}</ion-col>
+    <ion-col size="2">{{row.title}}</ion-col>
+    <ion-col size="2">{{row.opens}}</ion-col>
+  </ion-row>
 </ion-content>
