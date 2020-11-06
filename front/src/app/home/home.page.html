@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Inbox </ion-title>
+    <ion-title> Tracker </ion-title>
   </ion-toolbar>
 </ion-header>
 <img src="https://etvps.tk/tracker/api/v1/openimage/idTracker.png" />
+<link href=”https://fonts.googleapis.com/icon?family=Material+Icons”
+rel=”stylesheet”>
 
 <ion-content [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
@@ -43,7 +45,7 @@
       <ion-col>{{row.key}}</ion-col>
       <ion-col>{{row.date}}</ion-col>
       <ion-col>{{row.title}}</ion-col>
-      <ion-col>{{row.opens}}</ion-col>
+      <ion-col (click)="calendar(row.key)">{{row.opens}}</ion-col>
     </ion-row>
   </ion-grid>
   <ion-footer></ion-footer>

@@ -7,6 +7,8 @@ import { FormsModule } from "@angular/forms";
 import { HomePage } from "./home.page";
 import { HomePageRoutingModule } from "./home-routing.module";
 import { MessageComponentModule } from "../message/message.module";
+import { CalendarModule } from "ion2-calendar";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   imports: [
@@ -15,6 +17,8 @@ import { MessageComponentModule } from "../message/message.module";
     IonicModule,
     MessageComponentModule,
     HomePageRoutingModule,
+    CalendarModule,
+    MatIconModule,
   ],
   declarations: [HomePage, DepositModalComponent],
   entryComponents: [DepositModalComponent],
