@@ -62,3 +62,10 @@ section {
 #tbl {
   margin: 3% 5% 0 5%;
 }
+
+#open {
+  position: fixed;
+  z-index: 2;
+  right: 20px;
+  bottom: 50px;
+}
