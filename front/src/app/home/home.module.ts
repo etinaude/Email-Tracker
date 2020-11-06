@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { ModalComponent } from "./modal/modal.component";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { IonicModule } from "@ionic/angular";
+import { FormsModule } from "@angular/forms";
 
-import { HomePage } from './home.page';
-import { HomePageRoutingModule } from './home-routing.module';
-import { MessageComponentModule } from '../message/message.module';
+import { HomePage } from "./home.page";
+import { HomePageRoutingModule } from "./home-routing.module";
+import { MessageComponentModule } from "../message/message.module";
 
 @NgModule({
   imports: [
@@ -13,8 +14,8 @@ import { MessageComponentModule } from '../message/message.module';
     FormsModule,
     IonicModule,
     MessageComponentModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ModalComponent],
 })
 export class HomePageModule {}
