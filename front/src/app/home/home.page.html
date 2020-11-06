@@ -11,7 +11,9 @@ rel=”stylesheet”>
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-button (click)="openModal()">New</ion-button>
+  <ion-fab id="open" (click)="openModal()"
+    ><ion-fab-button><b>+</b></ion-fab-button></ion-fab
+  >
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large"> Tracker </ion-title>
