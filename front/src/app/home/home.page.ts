@@ -1,3 +1,5 @@
+import { DepositModalComponent } from "./deposit-modal/deposit-modal.component";
+import { ModalController } from "@ionic/angular";
 import { Component } from "@angular/core";
 import { DataService, Message } from "../services/data.service";
 import { HttpClient } from "@angular/common/http";
@@ -9,7 +11,7 @@ var ip = "https://etvps.tk/tracker/api/v1/";
   styleUrls: ["home.page.scss"],
 })
 export class HomePage {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private modalCtrl: ModalController) {
     this.getAll();
   }
   datas: any;
@@ -86,6 +88,13 @@ export class HomePage {
   }
 
   makeTable() {}
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: DepositModalComponent,
+    });
+    await modal.present();
+  }
 }
 
 /*

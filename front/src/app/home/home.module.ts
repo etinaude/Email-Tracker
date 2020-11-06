@@ -1,4 +1,4 @@
-import { ModalComponent } from "./modal/modal.component";
+import { DepositModalComponent } from "./deposit-modal/deposit-modal.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
@@ -16,6 +16,7 @@ import { MessageComponentModule } from "../message/message.module";
     MessageComponentModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, ModalComponent],
+  declarations: [HomePage, DepositModalComponent],
+  entryComponents: [DepositModalComponent],
 })
 export class HomePageModule {}
