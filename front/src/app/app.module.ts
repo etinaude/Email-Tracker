@@ -10,6 +10,10 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 
+import "hammerjs";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatIconModule } from "@angular/material/icon";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,6 +22,8 @@ import { HttpClientModule } from "@angular/common/http";
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatIconModule,
   ],
   providers: [
     StatusBar,
