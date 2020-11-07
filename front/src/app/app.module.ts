@@ -1,3 +1,5 @@
+import { AppHttpService } from "./Services/app-http.service";
+import { AuthService } from "./Services/auth.service";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
@@ -14,6 +16,19 @@ import "hammerjs";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 
+import { Routes, RouterModule } from "@angular/router";
+
+const routes: Routes = [
+  {
+    path: "",
+    component: AuthService,
+  },
+  {
+    path: "user/:uid",
+    component: AppHttpService,
+  },
+];
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +44,8 @@ import { MatIconModule } from "@angular/material/icon";
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AuthService,
+    AppHttpService,
   ],
   bootstrap: [AppComponent],
 })

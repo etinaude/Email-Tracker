@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 var ip = "https://etvps.tk/tracker/api/v1/";
+ip = "http://localhost:3000";
 @Component({
   selector: "app-home",
   templateUrl: "home.page.html",
