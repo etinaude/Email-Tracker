@@ -1,33 +1,35 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="icon" type="image/png" href="./images/logo.png" />
-    <title>Tracker</title>
-  </head>
 
-  <body>
-    <h1 class="title white">Tracker</h1>
-    <div id="btn">
-      <button onclick="newImage()">new</button>
-      <!--
-    <button onclick="getImage()">get</button>
-  
-      <button onclick="getAll()">all</button>
-      
-    <button onclick="openImage()">open</button>
-    --></div>
-    <div id="form">
-      <input id="title" type="text" placeholder="Title" />
-      <input id="to" type="text" placeholder="To" />
-      <input id="type" type="text" placeholder="Type" />
-      <input id="id" type="text" placeholder="id" />
+<head>
+  <link rel="stylesheet" href="./css/normalize.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="icon" type="image/png" href="./images/logo.png" />
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.css' rel='stylesheet' />
+  <script defer src='https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js'></script>
+  <title>Tracker</title>
+</head>
+
+<body>
+  <h1 class="title white">Tracker</h1>
+  <div id="btn">
+  </div>
+  <button id="showBtn" onclick="showInp()">Show</button>
+  <div id="form">
+    <input class="inp" id="title" type="text" placeholder="Title" />
+    <input class="inp" id="to" type="text" placeholder="To" />
+    <input class="inp" id="type" type="text" placeholder="Type" />
+    <input class="inp" id="id" type="text" placeholder="id" />
+    <button class="inp" onclick="newImage()">new</button>
+  </div>
+  <div id="table"></div>
+  <div id="modal" onclick="closeModal()">
+    <div id="content">
+      <div onclick="closeModal()">X</div>
+      <div id="calendar"></div>
     </div>
-    <div id="table"></div>
-    <div id="modal" onclick="closeModal()">
-      <div id="content" onclick="closeModal()"></div>
-    </div>
-    <img src="https://207.148.83.171/tracker/api/v1/openimage/idTracker.png" />
-    <script src="./js/script.js" defer></script>
-  </body>
+  </div>
+  <img src="https://etvps.tk/tracker/api/v1/openimage/idTracker.png" />
+  <script src="./js/script.js" defer></script>
+</body>
+
 </html>

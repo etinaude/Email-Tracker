@@ -92,6 +92,15 @@ APP.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
       throw err;
     }
   });
+
+  sql = `DROP TABLE "${id}"`;
+
+  db.all(sql, [], (err, data) => {
+    if (err) {
+      throw err;
+    }
+  });
+
   res.sendFile(__dirname + PATH);
 });
 
@@ -107,7 +116,6 @@ APP.get(/\/tracker\/api\/v1\/history\/*/, (req, res) => {
     res.json(data);
   });
 });
-
 
 APP.post(`${BASE}submit`, (req, res) => {
   var inp = JSON.parse(req.body[0]);
@@ -125,9 +133,6 @@ APP.post(`${BASE}submit`, (req, res) => {
   });
   res.sendStatus(200);
 });
-
-
-
 
 APP.get("/tracker", (req, res) => {
   res.sendFile(__dirname + INDEX);
