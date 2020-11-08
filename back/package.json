@@ -23,7 +23,7 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "nodemon --watch server"
+    "start": "pm2 start tracker.js --watch"
   },
   "author": "Etienne Naude",
   "license": "ISC"

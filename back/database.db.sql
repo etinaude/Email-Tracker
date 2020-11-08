@@ -1,4 +1,19 @@
 BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "id1602128443437" (
+	"date"	varchar(255)
+);
+CREATE TABLE IF NOT EXISTS "idwebsite" (
+	"date"	varchar(255)
+);
+CREATE TABLE IF NOT EXISTS "idgithub" (
+	"date"	varchar(255)
+);
+CREATE TABLE IF NOT EXISTS "idTracker" (
+	"date"	varchar(255)
+);
+CREATE TABLE IF NOT EXISTS "id1602127541552" (
+	"date"	varchar(255)
+);
 CREATE TABLE IF NOT EXISTS "Trackers" (
 	"key"	TEXT,
 	"title"	TEXT,
@@ -6,20 +21,32 @@ CREATE TABLE IF NOT EXISTS "Trackers" (
 	"opens"	TEXT,
 	"sent"	TEXT,
 	"type"	TEXT,
+	"history"	TEXT,
 	PRIMARY KEY("key")
 );
-CREATE TABLE IF NOT EXISTS "Email" (
-	"Key"	INTEGER UNIQUE,
-	"Title"	TEXT,
-	"Date Sent"	TEXT,
-	"Opens"	TEXT,
-	"Sent To"	TEXT,
-	"Type"	TEXT,
-	PRIMARY KEY("Key")
-);
-INSERT INTO "Trackers" VALUES ('id1601441480187','Website','3.8.2020-17:51 ','1','.','Tracker');
-INSERT INTO "Trackers" VALUES ('idTracker','Tracker','5/9/2020 - 10:33 ','0','','Tracker');
-INSERT INTO "Trackers" VALUES ('idgithub','Github','5/9/2020 - 10:34 ','0','','Tracker');
-INSERT INTO "Trackers" VALUES ('idwebsite','Portfolio','5/9/2020 - 10:36 ','0','','Tracker');
-INSERT INTO "Email" VALUES (1,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "idTracker" VALUES ('1602129155072');
+INSERT INTO "idTracker" VALUES ('1602129201246');
+INSERT INTO "idTracker" VALUES ('1602129232464');
+INSERT INTO "idTracker" VALUES ('1602129255327');
+INSERT INTO "idTracker" VALUES ('1602129504568');
+INSERT INTO "idTracker" VALUES ('1602129551583');
+INSERT INTO "idTracker" VALUES ('1602129563476');
+INSERT INTO "idTracker" VALUES ('1602129580954');
+INSERT INTO "idTracker" VALUES ('1602129606196');
+INSERT INTO "idTracker" VALUES ('1602129635000');
+INSERT INTO "idTracker" VALUES ('1602129801827');
+INSERT INTO "idTracker" VALUES ('1602129832069');
+INSERT INTO "idTracker" VALUES ('1602129851527');
+INSERT INTO "idTracker" VALUES ('1602130045963');
+INSERT INTO "idTracker" VALUES ('1602130054493');
+INSERT INTO "idTracker" VALUES ('1602130110105');
+INSERT INTO "idTracker" VALUES ('1602130311513');
+INSERT INTO "idTracker" VALUES ('1602130427750');
+INSERT INTO "idTracker" VALUES ('1602130455050');
+INSERT INTO "id1602127541552" VALUES ('1602127751428');
+INSERT INTO "id1602127541552" VALUES ('1602127752353');
+INSERT INTO "Trackers" VALUES ('idTracker','Tracker','5/9/2020 - 10:33 ','19','','Tracker','0');
+INSERT INTO "Trackers" VALUES ('idgithub','Github','5/9/2020 - 10:34 ','29','','Tracker',NULL);
+INSERT INTO "Trackers" VALUES ('idwebsite','Portfolio','5/9/2020 - 10:36 ','1215','','Tracker',NULL);
+INSERT INTO "Trackers" VALUES ('id1602127541552','','4/9/2020 - 16:25 ','8','','',NULL);
 COMMIT;
