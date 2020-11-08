@@ -4,12 +4,16 @@
   "description": "1",
   "main": "server.js",
   "dependencies": {
+    "@angular/animations": "^10.2.2",
+    "@angular/cdk": "^10.2.7",
+    "@angular/material": "^10.2.7",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.4",
+    "react": "^17.0.1",
     "sqlite3": "^5.0.0",
     "yaml": "^1.10.0"
   },

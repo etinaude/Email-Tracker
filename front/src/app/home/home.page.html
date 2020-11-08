@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Tracker </ion-title>
+  </ion-toolbar>
+</ion-header>
+<img src="https://etvps.tk/tracker/api/v1/openimage/idTracker.png" />
+<link href=”https://fonts.googleapis.com/icon?family=Material+Icons”
+rel=”stylesheet”>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-fab id="open" (click)="openModal()"
+    ><ion-fab-button><b>+</b></ion-fab-button></ion-fab
+  >
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"> Tracker </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid id="tbl">
+    <ion-row class="header-row">
+      <ion-col>control</ion-col>
+      <ion-col>ID</ion-col>
+      <ion-col>Date</ion-col>
+      <ion-col>Title</ion-col>
+      <ion-col>Opens</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let row of datas; let i = index;">
+      <ion-col>
+        <ion-button
+          mat-stroked-button
+          color="primary"
+          (click)="resetImage(row.key)"
+        >
+          reset
+        </ion-button>
+        <ion-button
+          mat-stroked-button
+          color="primary"
+          (click)="removeImage(row.key)"
+        >
+          remove
+        </ion-button>
+      </ion-col>
+      <ion-col>{{row.key}}</ion-col>
+      <ion-col>{{row.date}}</ion-col>
+      <ion-col>{{row.title}}</ion-col>
+      <ion-col (click)="calendar(row.key)">{{row.opens}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-footer></ion-footer>
+</ion-content>

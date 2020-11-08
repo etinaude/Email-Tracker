@@ -43,7 +43,7 @@ body {
   width: 10%;
   left: 40%;
   top: 20%;
-  padding: 10%;
+  padding: 5% 10% 10% 10%;
   border-radius: 20px;
 }
 #score {
