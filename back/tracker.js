@@ -134,7 +134,7 @@ APP.post(`${BASE}submit`, (req, res) => {
   res.sendStatus(200);
 });
 
-APP.get("/tracker", (req, res) => {
+APP.get("/", (req, res) => {
   res.sendFile(__dirname + INDEX);
 });
 
