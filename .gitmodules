@@ -2,3 +2,6 @@
 	path = gmail.js
 
 	url = git@github.com:KartikTalwar/gmail.js.git
+[submodule "gmail-chrome-extension-boilerplate"]
+	path = gmail-chrome-extension-boilerplate
+	url = git@github.com:KartikTalwar/gmail-chrome-extension-boilerplate.git

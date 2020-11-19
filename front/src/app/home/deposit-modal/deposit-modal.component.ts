@@ -43,7 +43,7 @@ export class DepositModalComponent implements OnInit {
 
       body: `0=${str}`,
     });
-    this.makeTable();
+    //this.makeTable();
   }
 
   makeTable() {

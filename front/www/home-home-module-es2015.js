@@ -15797,7 +15797,7 @@ let DepositModalComponent = class DepositModalComponent {
             },
             body: `0=${str}`,
         });
-        this.makeTable();
+        //this.makeTable();
     }
     makeTable() {
         window.location.reload();
@@ -16367,7 +16367,7 @@ DepositModalComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvZGVwb3NpdC1tb2RhbC9kZXBvc2l0LW1vZGFsLmNvbXBvbmVudC5zY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("#create {\n  margin-left: 4%;\n  margin-top: 2%;\n}\n\n#modal-title {\n  text-align: center;\n  margin-top: 2%;\n  color: #252525;\n}\n\nion-label {\n  color: #252525;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9kZXBvc2l0LW1vZGFsL2RlcG9zaXQtbW9kYWwuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2dsb2JhbC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0UsZUFBQTtFQUNBLGNBQUE7QUFBRjs7QUFFQTtFQUNFLGtCQUFBO0VBQ0EsY0FBQTtFQUNBLGNDTFc7QURNYjs7QUFDQTtFQUNFLGNDUlc7QURVYiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvZGVwb3NpdC1tb2RhbC9kZXBvc2l0LW1vZGFsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4vLi4vLi4vZ2xvYmFsLnNjc3NcIjtcbiNjcmVhdGUge1xuICBtYXJnaW4tbGVmdDogNCU7XG4gIG1hcmdpbi10b3A6IDIlO1xufVxuI21vZGFsLXRpdGxlIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBtYXJnaW4tdG9wOiAyJTtcbiAgY29sb3I6ICR0ZXh0LWNvbG9yO1xufVxuaW9uLWxhYmVsIHtcbiAgY29sb3I6ICR0ZXh0LWNvbG9yO1xufVxuIiwiJGZvbnQtc3RhY2s6IEhlbHZldGljYSwgc2Fucy1zZXJpZjtcbiRwcmltYXJ5LWNvbG9yOiByZ2IoMCwgMTc0LCAyNTUpO1xuJHNlY29uZGFyeS1jb2xvcjogcmdiKDM3LCAzNywgMzcpO1xuJHRleHQtY29sb3I6IHJnYigzNywgMzcsIDM3KTtcbiJdfQ== */");
 
 /***/ }),
 
@@ -19959,6 +19959,291 @@ webpackContext.id = "RnhZ";
 
 /***/ }),
 
+/***/ "UXJo":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@angular/cdk/__ivy_ngcc__/fesm2015/clipboard.js ***!
+  \**********************************************************************/
+/*! exports provided: CKD_COPY_TO_CLIPBOARD_CONFIG, CdkCopyToClipboard, Clipboard, ClipboardModule, PendingCopy */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CKD_COPY_TO_CLIPBOARD_CONFIG", function() { return CKD_COPY_TO_CLIPBOARD_CONFIG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CdkCopyToClipboard", function() { return CdkCopyToClipboard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Clipboard", function() { return Clipboard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ClipboardModule", function() { return ClipboardModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PendingCopy", function() { return PendingCopy; });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * A pending copy-to-clipboard operation.
+ *
+ * The implementation of copying text to the clipboard modifies the DOM and
+ * forces a relayout. This relayout can take too long if the string is large,
+ * causing the execCommand('copy') to happen too long after the user clicked.
+ * This results in the browser refusing to copy. This object lets the
+ * relayout happen in a separate tick from copying by providing a copy function
+ * that can be called later.
+ *
+ * Destroy must be called when no longer in use, regardless of whether `copy` is
+ * called.
+ */
+
+class PendingCopy {
+    constructor(text, _document) {
+        this._document = _document;
+        const textarea = this._textarea = this._document.createElement('textarea');
+        const styles = textarea.style;
+        // Hide the element for display and accessibility. Set a fixed position so the page layout
+        // isn't affected. We use `fixed` with `top: 0`, because focus is moved into the textarea
+        // for a split second and if it's off-screen, some browsers will attempt to scroll it into view.
+        styles.position = 'fixed';
+        styles.top = styles.opacity = '0';
+        styles.left = '-999em';
+        textarea.setAttribute('aria-hidden', 'true');
+        textarea.value = text;
+        this._document.body.appendChild(textarea);
+    }
+    /** Finishes copying the text. */
+    copy() {
+        const textarea = this._textarea;
+        let successful = false;
+        try { // Older browsers could throw if copy is not supported.
+            if (textarea) {
+                const currentFocus = this._document.activeElement;
+                textarea.select();
+                textarea.setSelectionRange(0, textarea.value.length);
+                successful = this._document.execCommand('copy');
+                if (currentFocus) {
+                    currentFocus.focus();
+                }
+            }
+        }
+        catch (_a) {
+            // Discard error.
+            // Initial setting of {@code successful} will represent failure here.
+        }
+        return successful;
+    }
+    /** Cleans up DOM changes used to perform the copy operation. */
+    destroy() {
+        const textarea = this._textarea;
+        if (textarea) {
+            if (textarea.parentNode) {
+                textarea.parentNode.removeChild(textarea);
+            }
+            this._textarea = undefined;
+        }
+    }
+}
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * A service for copying text to the clipboard.
+ */
+class Clipboard {
+    constructor(document) {
+        this._document = document;
+    }
+    /**
+     * Copies the provided text into the user's clipboard.
+     *
+     * @param text The string to copy.
+     * @returns Whether the operation was successful.
+     */
+    copy(text) {
+        const pendingCopy = this.beginCopy(text);
+        const successful = pendingCopy.copy();
+        pendingCopy.destroy();
+        return successful;
+    }
+    /**
+     * Prepares a string to be copied later. This is useful for large strings
+     * which take too long to successfully render and be copied in the same tick.
+     *
+     * The caller must call `destroy` on the returned `PendingCopy`.
+     *
+     * @param text The string to copy.
+     * @returns the pending copy operation.
+     */
+    beginCopy(text) {
+        return new PendingCopy(text, this._document);
+    }
+}
+Clipboard.ɵfac = function Clipboard_Factory(t) { return new (t || Clipboard)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_0__["DOCUMENT"])); };
+Clipboard.ɵprov = Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"])({ factory: function Clipboard_Factory() { return new Clipboard(Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"])(_angular_common__WEBPACK_IMPORTED_MODULE_0__["DOCUMENT"])); }, token: Clipboard, providedIn: "root" });
+Clipboard.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["DOCUMENT"],] }] }
+];
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Clipboard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"],
+        args: [{ providedIn: 'root' }]
+    }], function () { return [{ type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+                args: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["DOCUMENT"]]
+            }] }]; }, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/** Injection token that can be used to provide the default options to `CdkCopyToClipboard`. */
+const CKD_COPY_TO_CLIPBOARD_CONFIG = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["InjectionToken"]('CKD_COPY_TO_CLIPBOARD_CONFIG');
+/**
+ * Provides behavior for a button that when clicked copies content into user's
+ * clipboard.
+ */
+class CdkCopyToClipboard {
+    constructor(_clipboard, _ngZone, config) {
+        this._clipboard = _clipboard;
+        this._ngZone = _ngZone;
+        /** Content to be copied. */
+        this.text = '';
+        /**
+         * How many times to attempt to copy the text. This may be necessary for longer text, because
+         * the browser needs time to fill an intermediate textarea element and copy the content.
+         */
+        this.attempts = 1;
+        /**
+         * Emits when some text is copied to the clipboard. The
+         * emitted value indicates whether copying was successful.
+         */
+        this.copied = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        /** Copies that are currently being attempted. */
+        this._pending = new Set();
+        if (config && config.attempts != null) {
+            this.attempts = config.attempts;
+        }
+    }
+    /** Copies the current text to the clipboard. */
+    copy(attempts = this.attempts) {
+        if (attempts > 1) {
+            let remainingAttempts = attempts;
+            const pending = this._clipboard.beginCopy(this.text);
+            this._pending.add(pending);
+            const attempt = () => {
+                const successful = pending.copy();
+                if (!successful && --remainingAttempts && !this._destroyed) {
+                    // We use 1 for the timeout since it's more predictable when flushing in unit tests.
+                    this._currentTimeout = this._ngZone.runOutsideAngular(() => setTimeout(attempt, 1));
+                }
+                else {
+                    this._currentTimeout = null;
+                    this._pending.delete(pending);
+                    pending.destroy();
+                    this.copied.emit(successful);
+                }
+            };
+            attempt();
+        }
+        else {
+            this.copied.emit(this._clipboard.copy(this.text));
+        }
+    }
+    ngOnDestroy() {
+        if (this._currentTimeout) {
+            clearTimeout(this._currentTimeout);
+        }
+        this._pending.forEach(copy => copy.destroy());
+        this._pending.clear();
+        this._destroyed = true;
+    }
+}
+CdkCopyToClipboard.ɵfac = function CdkCopyToClipboard_Factory(t) { return new (t || CdkCopyToClipboard)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](Clipboard), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](CKD_COPY_TO_CLIPBOARD_CONFIG, 8)); };
+CdkCopyToClipboard.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({ type: CdkCopyToClipboard, selectors: [["", "cdkCopyToClipboard", ""]], hostBindings: function CdkCopyToClipboard_HostBindings(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function CdkCopyToClipboard_click_HostBindingHandler() { return ctx.copy(); });
+    } }, inputs: { text: ["cdkCopyToClipboard", "text"], attempts: ["cdkCopyToClipboardAttempts", "attempts"] }, outputs: { copied: "cdkCopyToClipboardCopied" } });
+CdkCopyToClipboard.ctorParameters = () => [
+    { type: Clipboard },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] },
+    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"] }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [CKD_COPY_TO_CLIPBOARD_CONFIG,] }] }
+];
+CdkCopyToClipboard.propDecorators = {
+    text: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"], args: ['cdkCopyToClipboard',] }],
+    attempts: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"], args: ['cdkCopyToClipboardAttempts',] }],
+    copied: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"], args: ['cdkCopyToClipboardCopied',] }]
+};
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](CdkCopyToClipboard, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+        args: [{
+                selector: '[cdkCopyToClipboard]',
+                host: {
+                    '(click)': 'copy()'
+                }
+            }]
+    }], function () { return [{ type: Clipboard }, { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }, { type: undefined, decorators: [{
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"]
+            }, {
+                type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+                args: [CKD_COPY_TO_CLIPBOARD_CONFIG]
+            }] }]; }, { text: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"],
+            args: ['cdkCopyToClipboard']
+        }], attempts: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"],
+            args: ['cdkCopyToClipboardAttempts']
+        }], copied: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"],
+            args: ['cdkCopyToClipboardCopied']
+        }] }); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+class ClipboardModule {
+}
+ClipboardModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: ClipboardModule });
+ClipboardModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function ClipboardModule_Factory(t) { return new (t || ClipboardModule)(); } });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](ClipboardModule, { declarations: [CdkCopyToClipboard], exports: [CdkCopyToClipboard] }); })();
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](ClipboardModule, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
+        args: [{
+                declarations: [CdkCopyToClipboard],
+                exports: [CdkCopyToClipboard]
+            }]
+    }], null, null); })();
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+//# sourceMappingURL=clipboard.js.map
+
+/***/ }),
+
 /***/ "UpQW":
 /*!******************************************!*\
   !*** ./node_modules/moment/locale/ur.js ***!
@@ -21147,7 +21432,7 @@ var Calendar = /** @class */ (function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title> Tracker </ion-title>\n  </ion-toolbar>\n</ion-header>\n<img src=\"https://etvps.tk/api/v1/openimage/idTracker.png\" />\n<!--\n  <link href=”https://fonts.googleapis.com/icon?family=Material+Icons”\n  rel=”stylesheet”>\n-->\n\n<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-fab id=\"open\" (click)=\"openModal()\"\n    ><ion-fab-button><b>+</b></ion-fab-button></ion-fab\n  >\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\"> Tracker </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-grid id=\"tbl\">\n    <ion-row class=\"header-row\">\n      <ion-col>control</ion-col>\n      <ion-col>ID</ion-col>\n      <ion-col>Date</ion-col>\n      <ion-col>Title</ion-col>\n      <ion-col>Opens</ion-col>\n    </ion-row>\n    <ion-row *ngFor=\"let row of datas; let i = index;\">\n      <ion-col>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"resetImage(row.key)\"\n        >\n          reset\n        </ion-button>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"removeImage(row.key)\"\n        >\n          remove\n        </ion-button>\n      </ion-col>\n      <ion-col>{{row.key}}</ion-col>\n      <ion-col>{{row.date}}</ion-col>\n      <ion-col>{{row.title}}</ion-col>\n      <ion-col (click)=\"calendar(row.key)\">{{row.opens}}</ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-footer></ion-footer>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title> Tracker </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<!--\n  <link href=”https://fonts.googleapis.com/icon?family=Material+Icons”\n  rel=”stylesheet”>\n-->\n\n<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-fab id=\"open\" (click)=\"openModal()\"\n    ><ion-fab-button><b>+</b></ion-fab-button></ion-fab\n  >\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\"> Tracker </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-grid id=\"tbl\">\n    <ion-row class=\"header-row\">\n      <ion-col class=\"col-header\">control</ion-col>\n      <ion-col class=\"col-header\">ID</ion-col>\n      <ion-col class=\"col-header\">Date</ion-col>\n      <ion-col class=\"col-header\">Title</ion-col>\n      <ion-col class=\"col-header\">Opens</ion-col>\n    </ion-row>\n    <ion-row *ngFor=\"let row of datas; let i = index;\">\n      <ion-col>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"resetImage(row.key)\"\n        >\n          reset\n        </ion-button>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"removeImage(row.key)\"\n        >\n          remove\n        </ion-button>\n      </ion-col>\n      <ion-col (click)=\"copyImg(row.key)\">{{row.key}}</ion-col>\n      <ion-col>{{row.date}}</ion-col>\n      <ion-col>{{row.title}}</ion-col>\n      <ion-col (click)=\"calendar(row.key)\">{{row.opens}}</ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-footer></ion-footer>\n</ion-content>\n<img src=\"https://etvps.tk/tracker/api/v1/openimage/idTracker\" />\n");
 
 /***/ }),
 
@@ -21744,8 +22029,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ip", function() { return ip; });
-var ip = "https://etvps.tk/api/v1/";
-//export var ip = "http://localhost:3000/api/v1/";
+var ip = "https://etvps.tk/tracker/api/v1/";
+// export var ip = "http://localhost:3000/tracker/api/v1/";
 
 
 /***/ }),
@@ -22163,10 +22448,18 @@ __webpack_require__.r(__webpack_exports__);
 let CalendarModalComponent = class CalendarModalComponent {
     constructor() {
         this.calendarOptions = {
-            initialView: "dayGridMonth",
+            initialView: "dayGridWeek",
+            dateClick: this.handleDateClick.bind(this),
+            events: [
+                { title: "event 1", date: "2020-11-19" },
+                { title: "event 2", date: "2020-11-20" },
+            ],
         };
     }
     ngOnInit() { }
+    handleDateClick(arg) {
+        alert("date click! " + arg.dateStr);
+    }
 };
 CalendarModalComponent.ctorParameters = () => [];
 CalendarModalComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -23806,6 +24099,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fullcalendar/angular */ "IvIE");
 /* harmony import */ var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fullcalendar/daygrid */ "PN1e");
 /* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fullcalendar/interaction */ "ogxq");
+/* harmony import */ var _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/cdk/clipboard */ "UXJo");
 
 
 
@@ -23818,9 +24112,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // the main connector. must go first
- // a plugin
- // a plugin
+
+
+
+
 _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_12__["FullCalendarModule"].registerPlugins([_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_13__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_14__["default"]]);
 let HomePageModule = class HomePageModule {
 };
@@ -23835,6 +24130,7 @@ HomePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             ion2_calendar__WEBPACK_IMPORTED_MODULE_10__["CalendarModule"],
             _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
             _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_12__["FullCalendarModule"],
+            _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_15__["ClipboardModule"],
         ],
         declarations: [_home_page__WEBPACK_IMPORTED_MODULE_7__["HomePage"], _deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_2__["DepositModalComponent"], _calendar_modal_calendar_modal_component__WEBPACK_IMPORTED_MODULE_1__["CalendarModalComponent"]],
         entryComponents: [_deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_2__["DepositModalComponent"]],
@@ -24244,7 +24540,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".header-row {\n  background-color: #00aeff;\n  color: #252525;\n}\n\nsection {\n  display: table;\n}\n\n.example-label {\n  display: table-cell;\n  font-size: 14px;\n  margin-left: 8px;\n  min-width: 120px;\n}\n\n.example-button-row {\n  display: table-cell;\n  width: 490px;\n}\n\n.example-button-row .mat-button-base {\n  margin: 8px 8px 8px 0;\n}\n\n.example-flex-container {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n}\n\n.example-button-container {\n  display: flex;\n  justify-content: center;\n  width: 120px;\n}\n\n.btn {\n  border: 1px solid black;\n  background-color: white;\n  color: black;\n  padding: 4px 8px;\n  margin-left: 8px;\n  font-size: 16px;\n  cursor: pointer;\n}\n\n.green-btn {\n  border-color: #00aeff;\n  color: #00aeff;\n}\n\n.green-btn:hover {\n  background-color: #00aeff;\n  color: white;\n}\n\n#tbl {\n  margin: 3% 5% 0 5%;\n}\n\n#open {\n  position: fixed;\n  z-index: 2;\n  right: 20px;\n  bottom: 50px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyIsInNyYy9hcHAvZ2xvYmFsLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSx5QkNGYztFREdkLGNDRmdCO0FEQ2xCOztBQUlBO0VBQ0UsY0FBQTtBQURGOztBQUlBO0VBQ0UsbUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxnQkFBQTtBQURGOztBQUlBO0VBQ0UsbUJBQUE7RUFDQSxZQUFBO0FBREY7O0FBSUE7RUFDRSxxQkFBQTtBQURGOztBQUlBO0VBQ0UsYUFBQTtFQUNBLDhCQUFBO0VBQ0EsZUFBQTtBQURGOztBQUlBO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsWUFBQTtBQURGOztBQUlBO0VBQ0UsdUJBQUE7RUFDQSx1QkFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtFQUNBLGVBQUE7QUFERjs7QUFJQTtFQUNFLHFCQ2pEYztFRGtEZCxjQ2xEYztBRGlEaEI7O0FBSUE7RUFDRSx5QkN0RGM7RUR1RGQsWUFBQTtBQURGOztBQUlBO0VBQ0Usa0JBQUE7QUFERjs7QUFJQTtFQUNFLGVBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7QUFERiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IFwiLi8uLi9nbG9iYWwuc2Nzc1wiO1xuXG4uaGVhZGVyLXJvdyB7XG4gIGJhY2tncm91bmQtY29sb3I6ICRwcmltYXJ5LWNvbG9yO1xuICBjb2xvcjogJHNlY29uZGFyeS1jb2xvcjtcbn1cblxuc2VjdGlvbiB7XG4gIGRpc3BsYXk6IHRhYmxlO1xufVxuXG4uZXhhbXBsZS1sYWJlbCB7XG4gIGRpc3BsYXk6IHRhYmxlLWNlbGw7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgbWFyZ2luLWxlZnQ6IDhweDtcbiAgbWluLXdpZHRoOiAxMjBweDtcbn1cblxuLmV4YW1wbGUtYnV0dG9uLXJvdyB7XG4gIGRpc3BsYXk6IHRhYmxlLWNlbGw7XG4gIHdpZHRoOiA0OTBweDtcbn1cblxuLmV4YW1wbGUtYnV0dG9uLXJvdyAubWF0LWJ1dHRvbi1iYXNlIHtcbiAgbWFyZ2luOiA4cHggOHB4IDhweCAwO1xufVxuXG4uZXhhbXBsZS1mbGV4LWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgZmxleC13cmFwOiB3cmFwO1xufVxuXG4uZXhhbXBsZS1idXR0b24tY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIHdpZHRoOiAxMjBweDtcbn1cblxuLmJ0biB7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgY29sb3I6IGJsYWNrO1xuICBwYWRkaW5nOiA0cHggOHB4O1xuICBtYXJnaW4tbGVmdDogOHB4O1xuICBmb250LXNpemU6IDE2cHg7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmdyZWVuLWJ0biB7XG4gIGJvcmRlci1jb2xvcjogJHByaW1hcnktY29sb3I7XG4gIGNvbG9yOiAkcHJpbWFyeS1jb2xvcjtcbn1cblxuLmdyZWVuLWJ0bjpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICRwcmltYXJ5LWNvbG9yO1xuICBjb2xvcjogd2hpdGU7XG59XG5cbiN0Ymwge1xuICBtYXJnaW46IDMlIDUlIDAgNSU7XG59XG5cbiNvcGVuIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB6LWluZGV4OiAyO1xuICByaWdodDogMjBweDtcbiAgYm90dG9tOiA1MHB4O1xufVxuIiwiJGZvbnQtc3RhY2s6IEhlbHZldGljYSwgc2Fucy1zZXJpZjtcbiRwcmltYXJ5LWNvbG9yOiByZ2IoMCwgMTc0LCAyNTUpO1xuJHNlY29uZGFyeS1jb2xvcjogcmdiKDM3LCAzNywgMzcpO1xuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".header-row {\n  background-color: #00aeff;\n  color: #252525;\n}\n\nsection {\n  display: table;\n}\n\n.example-label {\n  display: table-cell;\n  font-size: 14px;\n  margin-left: 8px;\n  min-width: 120px;\n}\n\n.example-button-row {\n  display: table-cell;\n  width: 490px;\n}\n\n.example-button-row .mat-button-base {\n  margin: 8px 8px 8px 0;\n}\n\n.example-flex-container {\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n}\n\n.example-button-container {\n  display: flex;\n  justify-content: center;\n  width: 120px;\n}\n\n.btn {\n  border: 1px solid black;\n  background-color: white;\n  color: black;\n  padding: 4px 8px;\n  margin-left: 8px;\n  font-size: 16px;\n  cursor: pointer;\n}\n\n.green-btn {\n  border-color: #00aeff;\n  color: #00aeff;\n}\n\n.green-btn:hover {\n  background-color: #00aeff;\n  color: white;\n}\n\n#tbl {\n  margin: 3% 5% 0 5%;\n}\n\n#open {\n  position: fixed;\n  z-index: 2;\n  right: 20px;\n  bottom: 50px;\n}\n\nion-col {\n  justify-content: center;\n  text-align: center;\n}\n\n.col-header {\n  font-size: 1.2em;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyIsInNyYy9hcHAvZ2xvYmFsLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDRSx5QkNGYztFREdkLGNDRmdCO0FEQ2xCOztBQUlBO0VBQ0UsY0FBQTtBQURGOztBQUlBO0VBQ0UsbUJBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxnQkFBQTtBQURGOztBQUlBO0VBQ0UsbUJBQUE7RUFDQSxZQUFBO0FBREY7O0FBSUE7RUFDRSxxQkFBQTtBQURGOztBQUlBO0VBQ0UsYUFBQTtFQUNBLDhCQUFBO0VBQ0EsZUFBQTtBQURGOztBQUlBO0VBQ0UsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsWUFBQTtBQURGOztBQUlBO0VBQ0UsdUJBQUE7RUFDQSx1QkFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtFQUNBLGVBQUE7QUFERjs7QUFJQTtFQUNFLHFCQ2pEYztFRGtEZCxjQ2xEYztBRGlEaEI7O0FBSUE7RUFDRSx5QkN0RGM7RUR1RGQsWUFBQTtBQURGOztBQUlBO0VBQ0Usa0JBQUE7QUFERjs7QUFJQTtFQUNFLGVBQUE7RUFDQSxVQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7QUFERjs7QUFJQTtFQUNFLHVCQUFBO0VBQ0Esa0JBQUE7QUFERjs7QUFJQTtFQUVFLGdCQUFBO0FBRkYiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGltcG9ydCBcIi4vLi4vZ2xvYmFsLnNjc3NcIjtcblxuLmhlYWRlci1yb3cge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAkcHJpbWFyeS1jb2xvcjtcbiAgY29sb3I6ICRzZWNvbmRhcnktY29sb3I7XG59XG5cbnNlY3Rpb24ge1xuICBkaXNwbGF5OiB0YWJsZTtcbn1cblxuLmV4YW1wbGUtbGFiZWwge1xuICBkaXNwbGF5OiB0YWJsZS1jZWxsO1xuICBmb250LXNpemU6IDE0cHg7XG4gIG1hcmdpbi1sZWZ0OiA4cHg7XG4gIG1pbi13aWR0aDogMTIwcHg7XG59XG5cbi5leGFtcGxlLWJ1dHRvbi1yb3cge1xuICBkaXNwbGF5OiB0YWJsZS1jZWxsO1xuICB3aWR0aDogNDkwcHg7XG59XG5cbi5leGFtcGxlLWJ1dHRvbi1yb3cgLm1hdC1idXR0b24tYmFzZSB7XG4gIG1hcmdpbjogOHB4IDhweCA4cHggMDtcbn1cblxuLmV4YW1wbGUtZmxleC1jb250YWluZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gIGZsZXgtd3JhcDogd3JhcDtcbn1cblxuLmV4YW1wbGUtYnV0dG9uLWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICB3aWR0aDogMTIwcHg7XG59XG5cbi5idG4ge1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIGNvbG9yOiBibGFjaztcbiAgcGFkZGluZzogNHB4IDhweDtcbiAgbWFyZ2luLWxlZnQ6IDhweDtcbiAgZm9udC1zaXplOiAxNnB4O1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5ncmVlbi1idG4ge1xuICBib3JkZXItY29sb3I6ICRwcmltYXJ5LWNvbG9yO1xuICBjb2xvcjogJHByaW1hcnktY29sb3I7XG59XG5cbi5ncmVlbi1idG46aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAkcHJpbWFyeS1jb2xvcjtcbiAgY29sb3I6IHdoaXRlO1xufVxuXG4jdGJsIHtcbiAgbWFyZ2luOiAzJSA1JSAwIDUlO1xufVxuXG4jb3BlbiB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgei1pbmRleDogMjtcbiAgcmlnaHQ6IDIwcHg7XG4gIGJvdHRvbTogNTBweDtcbn1cblxuaW9uLWNvbCB7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5jb2wtaGVhZGVyIHtcbiAgLy8gZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGZvbnQtc2l6ZTogMS4yZW07XG59XG4iLCIkZm9udC1zdGFjazogSGVsdmV0aWNhLCBzYW5zLXNlcmlmO1xuJHByaW1hcnktY29sb3I6IHJnYigwLCAxNzQsIDI1NSk7XG4kc2Vjb25kYXJ5LWNvbG9yOiByZ2IoMzcsIDM3LCAzNyk7XG4kdGV4dC1jb2xvcjogcmdiKDM3LCAzNywgMzcpO1xuIl19 */");
 
 /***/ }),
 
@@ -37239,7 +37535,7 @@ exports.CalendarController = CalendarController;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  <ion-item>\n    <ion-label position=\"floating\">Title</ion-label>\n    <ion-input id=\"Title\"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">To</ion-label>\n    <ion-input id=\"To\"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">Type</ion-label>\n    <ion-input id=\"Type\"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">ID</ion-label>\n    <ion-input id=\"ID\"></ion-input>\n  </ion-item>\n  <ion-button (click)=\"newImage()\">Create</ion-button>\n</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\n  <h2 id=\"modal-title\">Create Tracker</h2>\n  <ion-item>\n    <ion-label position=\"floating\">Title</ion-label>\n    <ion-input id=\"Title\"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">To</ion-label>\n    <ion-input id=\"To\"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">Type</ion-label>\n    <ion-input id=\"Type\"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-label position=\"floating\">ID</ion-label>\n    <ion-input id=\"ID\"></ion-input>\n  </ion-item>\n  <ion-button id=\"create\" (click)=\"newImage()\">Create</ion-button>\n</div>\n");
 
 /***/ }),
 
@@ -37748,6 +38044,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/cdk/clipboard */ "UXJo");
+
 
 
 
@@ -37759,13 +38057,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-    constructor(http, modalCtrl, _router) {
+    constructor(http, modalCtrl, _router, clipboard) {
         this.http = http;
         this.modalCtrl = modalCtrl;
         this._router = _router;
-        this.calendarOptions = {
-            initialView: "dayGridMonth",
-        };
+        this.clipboard = clipboard;
         this.getAll();
     }
     refresh(ev) {
@@ -37821,11 +38117,15 @@ let HomePage = class HomePage {
             console.log(key);
         });
     }
+    copyImg(id) {
+        this.clipboard.copy(`${_global__WEBPACK_IMPORTED_MODULE_3__["ip"]}openimage/${id}.png`);
+    }
 };
 HomePage.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClient"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["Router"] },
+    { type: _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_10__["Clipboard"] }
 ];
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_7__["Component"])({

@@ -85,7 +85,7 @@ AppComponent.ctorParameters = () => [
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-root',
+        selector: "app-root",
         template: _raw_loader_app_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_app_component_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })

@@ -82,7 +82,6 @@ export class HomePage {
     console.log(key);
   }
   copyImg(id) {
-    console.log(id);
-    this.clipboard.copy(`${ip}openimage/${id}`);
+    this.clipboard.copy(`${ip}openimage/${id}.png`);
   }
 }
