@@ -9,6 +9,11 @@ import { HomePageRoutingModule } from "./home-routing.module";
 import { MessageComponentModule } from "../message/message.module";
 import { CalendarModule } from "ion2-calendar";
 import { MatIconModule } from "@angular/material/icon";
+import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
+import interactionPlugin from "@fullcalendar/interaction"; // a plugin
+
+FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
 @NgModule({
   imports: [
@@ -19,6 +24,7 @@ import { MatIconModule } from "@angular/material/icon";
     HomePageRoutingModule,
     CalendarModule,
     MatIconModule,
+    FullCalendarModule,
   ],
   declarations: [HomePage, DepositModalComponent],
   entryComponents: [DepositModalComponent],
