@@ -1,3 +1,4 @@
+import { CalendarModalComponent } from "./calendar-modal/calendar-modal.component";
 import { DepositModalComponent } from "./deposit-modal/deposit-modal.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -26,7 +27,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     MatIconModule,
     FullCalendarModule,
   ],
-  declarations: [HomePage, DepositModalComponent],
+  declarations: [HomePage, DepositModalComponent, CalendarModalComponent],
   entryComponents: [DepositModalComponent],
 })
 export class HomePageModule {}

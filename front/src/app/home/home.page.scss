@@ -1,6 +1,4 @@
-$font-stack: Helvetica, sans-serif;
-$primary-color: rgb(0, 174, 255);
-$secondary-color: rgb(37, 37, 37);
+@import "./../global.scss";
 
 .header-row {
   background-color: $primary-color;

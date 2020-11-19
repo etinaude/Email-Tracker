@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
 import { DataService, Message } from "../services/data.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { CalendarOptions } from "@fullcalendar/angular";
 
 @Component({
   selector: "app-home",
@@ -78,4 +79,8 @@ export class HomePage {
     await modal.present();
     console.log(key);
   }
+
+  calendarOptions: CalendarOptions = {
+    initialView: "dayGridMonth",
+  };
 }
