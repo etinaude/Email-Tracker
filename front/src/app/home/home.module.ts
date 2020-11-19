@@ -1,3 +1,4 @@
+import { MobileModalComponent } from "./mobile-modal/mobile-modal.component";
 import { CalendarModalComponent } from "./calendar-modal/calendar-modal.component";
 import { DepositModalComponent } from "./deposit-modal/deposit-modal.component";
 import { NgModule } from "@angular/core";
@@ -29,7 +30,12 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     FullCalendarModule,
     ClipboardModule,
   ],
-  declarations: [HomePage, DepositModalComponent, CalendarModalComponent],
+  declarations: [
+    HomePage,
+    DepositModalComponent,
+    CalendarModalComponent,
+    MobileModalComponent,
+  ],
   entryComponents: [DepositModalComponent],
 })
 export class HomePageModule {}
