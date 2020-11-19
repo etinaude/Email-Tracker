@@ -7,6 +7,7 @@ import { DataService, Message } from "../services/data.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { CalendarOptions } from "@fullcalendar/angular";
+import { Clipboard } from "@angular/cdk/clipboard";
 
 @Component({
   selector: "app-home",
@@ -17,7 +18,8 @@ export class HomePage {
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
-    private _router: Router
+    private _router: Router,
+    private clipboard: Clipboard
   ) {
     this.getAll();
   }
@@ -79,8 +81,8 @@ export class HomePage {
     await modal.present();
     console.log(key);
   }
-
-  calendarOptions: CalendarOptions = {
-    initialView: "dayGridMonth",
-  };
+  copyImg(id) {
+    console.log(id);
+    this.clipboard.copy(`${ip}openimage/${id}`);
+  }
 }

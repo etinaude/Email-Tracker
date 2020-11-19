@@ -13,6 +13,14 @@ export class CalendarModalComponent implements OnInit {
   ngOnInit() {}
 
   calendarOptions: CalendarOptions = {
-    initialView: "dayGridMonth",
+    initialView: "dayGridWeek",
+    dateClick: this.handleDateClick.bind(this),
+    events: [
+      { title: "event 1", date: "2020-11-19" },
+      { title: "event 2", date: "2020-11-20" },
+    ],
   };
+  handleDateClick(arg) {
+    alert("date click! " + arg.dateStr);
+  }
 }

@@ -10,9 +10,10 @@ import { HomePageRoutingModule } from "./home-routing.module";
 import { MessageComponentModule } from "../message/message.module";
 import { CalendarModule } from "ion2-calendar";
 import { MatIconModule } from "@angular/material/icon";
-import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
-import interactionPlugin from "@fullcalendar/interaction"; // a plugin
+import { FullCalendarModule } from "@fullcalendar/angular";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { ClipboardModule } from "@angular/cdk/clipboard";
 
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
@@ -26,6 +27,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     CalendarModule,
     MatIconModule,
     FullCalendarModule,
+    ClipboardModule,
   ],
   declarations: [HomePage, DepositModalComponent, CalendarModalComponent],
   entryComponents: [DepositModalComponent],

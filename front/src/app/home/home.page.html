@@ -3,7 +3,7 @@
     <ion-title> Tracker </ion-title>
   </ion-toolbar>
 </ion-header>
-<img src="https://etvps.tk/api/v1/openimage/idTracker.png" />
+<img src="https://etvps.tk/tracker/api/v1/openimage/idTracker.png" />
 <!--
   <link href=”https://fonts.googleapis.com/icon?family=Material+Icons”
   rel=”stylesheet”>
@@ -23,11 +23,11 @@
   </ion-header>
   <ion-grid id="tbl">
     <ion-row class="header-row">
-      <ion-col>control</ion-col>
-      <ion-col>ID</ion-col>
-      <ion-col>Date</ion-col>
-      <ion-col>Title</ion-col>
-      <ion-col>Opens</ion-col>
+      <ion-col class="col-header">control</ion-col>
+      <ion-col class="col-header">ID</ion-col>
+      <ion-col class="col-header">Date</ion-col>
+      <ion-col class="col-header">Title</ion-col>
+      <ion-col class="col-header">Opens</ion-col>
     </ion-row>
     <ion-row *ngFor="let row of datas; let i = index;">
       <ion-col>
@@ -46,7 +46,7 @@
           remove
         </ion-button>
       </ion-col>
-      <ion-col>{{row.key}}</ion-col>
+      <ion-col (click)="copyImg(row.key)">{{row.key}}</ion-col>
       <ion-col>{{row.date}}</ion-col>
       <ion-col>{{row.title}}</ion-col>
       <ion-col (click)="calendar(row.key)">{{row.opens}}</ion-col>
