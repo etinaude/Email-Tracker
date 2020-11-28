@@ -28564,7 +28564,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title> Tracker </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<!--\n  <link href=”https://fonts.googleapis.com/icon?family=Material+Icons”\n  rel=”stylesheet”>\n-->\n\n<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-fab id=\"open\" (click)=\"openModal()\"\n    ><ion-fab-button><b>+</b></ion-fab-button></ion-fab\n  >\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\"> Tracker </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-grid id=\"tbl\">\n    <ion-row class=\"header-row\">\n      <ion-col class=\"col-header\">control</ion-col>\n      <ion-col class=\"col-header\">ID</ion-col>\n      <ion-col class=\"col-header\">Date</ion-col>\n      <ion-col class=\"col-header\">Title</ion-col>\n      <ion-col class=\"col-header\">Opens</ion-col>\n    </ion-row>\n    <ion-row *ngFor=\"let row of datas; let i = index;\">\n      <ion-col>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"resetImage(row.key)\"\n        >\n          reset\n        </ion-button>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"removeImage(row.key)\"\n        >\n          remove\n        </ion-button>\n      </ion-col>\n      <ion-col (click)=\"copyImg(row.key)\">{{row.key}}</ion-col>\n      <ion-col>{{row.date}}</ion-col>\n      <ion-col>{{row.title}}</ion-col>\n      <ion-col (click)=\"calendar(row.key)\">{{row.opens}}</ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-footer></ion-footer>\n</ion-content>\n<img src=\"https://etvps.tk/tracker/api/v1/openimage/idTracker\" />\n";
+      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title> Tracker </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<!--\n  <link href=”https://fonts.googleapis.com/icon?family=Material+Icons”\n  rel=”stylesheet”>\n-->\n\n<ion-content [fullscreen]=\"true\">\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"refresh($event)\">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n  <ion-fab id=\"open\" (click)=\"openModal()\"\n    ><ion-fab-button><b>+</b></ion-fab-button></ion-fab\n  >\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\"> Tracker </ion-title>\n    </ion-toolbar>\n  </ion-header>\n  <ion-grid id=\"tbl\">\n    <ion-row class=\"header-row\">\n      <ion-col class=\"col-header\">control</ion-col>\n      <ion-col class=\"col-header\">ID</ion-col>\n      <ion-col class=\"col-header\">Date</ion-col>\n      <ion-col class=\"col-header\">Title</ion-col>\n      <ion-col class=\"col-header\">Opens</ion-col>\n    </ion-row>\n    <ion-row *ngFor=\"let row of datas; let i = index;\">\n      <ion-col>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"resetImage(row.key)\"\n        >\n          reset\n        </ion-button>\n        <ion-button\n          mat-stroked-button\n          color=\"primary\"\n          (click)=\"removeImage(row.key)\"\n        >\n          remove\n        </ion-button>\n      </ion-col>\n      <ion-col (click)=\"copyImg(row.key)\">{{row.key}}</ion-col>\n      <ion-col>{{row.date}}</ion-col>\n      <ion-col>{{row.title}}</ion-col>\n      <ion-col (click)=\"calendar(row.key)\">{{row.opens}}</ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-footer></ion-footer>\n</ion-content>\n<img src=\"https://tracker.etvps.tk/tracker/api/v1/openimage/idTracker\" />\n";
       /***/
     },
 
@@ -29173,7 +29173,7 @@
         return ip;
       });
 
-      var ip = "https://etvps.tk/tracker/api/v1/"; // export var ip = "http://localhost:3000/tracker/api/v1/";
+      var ip = "https://tracker.etvps.tk/tracker/api/v1/"; // export var ip = "http://localhost:3000/tracker/api/v1/";
 
       /***/
     },
@@ -30278,6 +30278,26 @@
       });
       /***/
 
+    },
+
+    /***/
+    "bL++":
+    /*!*****************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/home/mobile-modal/mobile-modal.component.html ***!
+      \*****************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function bL(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<p>\n  mobile-modal works!\n</p>\n";
+      /***/
     },
 
     /***/
@@ -31441,108 +31461,114 @@
       /* harmony import */
 
 
-      var _calendar_modal_calendar_modal_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var _mobile_modal_mobile_modal_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./mobile-modal/mobile-modal.component */
+      "r4YW");
+      /* harmony import */
+
+
+      var _calendar_modal_calendar_modal_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! ./calendar-modal/calendar-modal.component */
       "ZHTe");
       /* harmony import */
 
 
-      var _deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ./deposit-modal/deposit-modal.component */
       "JjgC");
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
       /* harmony import */
 
 
-      var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @angular/common */
       "ofXK");
       /* harmony import */
 
 
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! @ionic/angular */
       "TEn/");
       /* harmony import */
 
 
-      var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! @angular/forms */
       "3Pt+");
       /* harmony import */
 
 
-      var _home_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _home_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./home.page */
       "zpKS");
       /* harmony import */
 
 
-      var _home_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _home_routing_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! ./home-routing.module */
       "A3+G");
       /* harmony import */
 
 
-      var _message_message_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      var _message_message_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ../message/message.module */
       "3tpA");
       /* harmony import */
 
 
-      var ion2_calendar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+      var ion2_calendar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! ion2-calendar */
       "zTSL");
       /* harmony import */
 
 
-      var ion2_calendar__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(ion2_calendar__WEBPACK_IMPORTED_MODULE_10__);
+      var ion2_calendar__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(ion2_calendar__WEBPACK_IMPORTED_MODULE_11__);
       /* harmony import */
 
 
-      var _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      var _angular_material_icon__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
       /*! @angular/material/icon */
       "NFeN");
       /* harmony import */
 
 
-      var _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      var _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! @fullcalendar/angular */
       "IvIE");
       /* harmony import */
 
 
-      var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      var _fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! @fullcalendar/daygrid */
       "PN1e");
       /* harmony import */
 
 
-      var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
       /*! @fullcalendar/interaction */
       "ogxq");
       /* harmony import */
 
 
-      var _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      var _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
       /*! @angular/cdk/clipboard */
       "UXJo");
 
-      _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_12__["FullCalendarModule"].registerPlugins([_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_13__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_14__["default"]]);
+      _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_13__["FullCalendarModule"].registerPlugins([_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_14__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_15__["default"]]);
 
       var HomePageModule = function HomePageModule() {
         _classCallCheck(this, HomePageModule);
       };
 
-      HomePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"], _message_message_module__WEBPACK_IMPORTED_MODULE_9__["MessageComponentModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_8__["HomePageRoutingModule"], ion2_calendar__WEBPACK_IMPORTED_MODULE_10__["CalendarModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"], _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_12__["FullCalendarModule"], _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_15__["ClipboardModule"]],
-        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_7__["HomePage"], _deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_2__["DepositModalComponent"], _calendar_modal_calendar_modal_component__WEBPACK_IMPORTED_MODULE_1__["CalendarModalComponent"]],
-        entryComponents: [_deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_2__["DepositModalComponent"]]
+      HomePageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"], _message_message_module__WEBPACK_IMPORTED_MODULE_10__["MessageComponentModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_9__["HomePageRoutingModule"], ion2_calendar__WEBPACK_IMPORTED_MODULE_11__["CalendarModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_12__["MatIconModule"], _fullcalendar_angular__WEBPACK_IMPORTED_MODULE_13__["FullCalendarModule"], _angular_cdk_clipboard__WEBPACK_IMPORTED_MODULE_16__["ClipboardModule"]],
+        declarations: [_home_page__WEBPACK_IMPORTED_MODULE_8__["HomePage"], _deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_3__["DepositModalComponent"], _calendar_modal_calendar_modal_component__WEBPACK_IMPORTED_MODULE_2__["CalendarModalComponent"], _mobile_modal_mobile_modal_component__WEBPACK_IMPORTED_MODULE_1__["MobileModalComponent"]],
+        entryComponents: [_deposit_modal_deposit_modal_component__WEBPACK_IMPORTED_MODULE_3__["DepositModalComponent"]]
       })], HomePageModule);
       /***/
     },
@@ -38722,6 +38748,75 @@
     },
 
     /***/
+    "r4YW":
+    /*!*************************************************************!*\
+      !*** ./src/app/home/mobile-modal/mobile-modal.component.ts ***!
+      \*************************************************************/
+
+    /*! exports provided: MobileModalComponent */
+
+    /***/
+    function r4YW(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "MobileModalComponent", function () {
+        return MobileModalComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_mobile_modal_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./mobile-modal.component.html */
+      "bL++");
+      /* harmony import */
+
+
+      var _mobile_modal_component_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./mobile-modal.component.scss */
+      "tbM4");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+
+      var MobileModalComponent = /*#__PURE__*/function () {
+        function MobileModalComponent() {
+          _classCallCheck(this, MobileModalComponent);
+        }
+
+        _createClass(MobileModalComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {}
+        }]);
+
+        return MobileModalComponent;
+      }();
+
+      MobileModalComponent.ctorParameters = function () {
+        return [];
+      };
+
+      MobileModalComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: "app-mobile-modal",
+        template: _raw_loader_mobile_modal_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_mobile_modal_component_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], MobileModalComponent);
+      /***/
+    },
+
+    /***/
     "rRAd":
     /*!*****************************************************************************!*\
       !*** ./node_modules/ion2-calendar/__ivy_ngcc__/dist/calendar.controller.js ***!
@@ -39557,6 +39652,26 @@
       });
       /***/
 
+    },
+
+    /***/
+    "tbM4":
+    /*!***************************************************************!*\
+      !*** ./src/app/home/mobile-modal/mobile-modal.component.scss ***!
+      \***************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function tbM4(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvbW9iaWxlLW1vZGFsL21vYmlsZS1tb2RhbC5jb21wb25lbnQuc2NzcyJ9 */";
+      /***/
     },
 
     /***/
@@ -45903,7 +46018,7 @@
         }, {
           key: "copyImg",
           value: function copyImg(id) {
-            this.clipboard.copy("".concat(_global__WEBPACK_IMPORTED_MODULE_3__["ip"], "openimage/").concat(id, ".png"));
+            this.clipboard.copy("".concat(_global__WEBPACK_IMPORTED_MODULE_3__["ip"], "openimage/").concat(id));
           }
         }]);
 
