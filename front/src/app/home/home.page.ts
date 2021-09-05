@@ -3,10 +3,8 @@ import { DepositModalComponent } from "./deposit-modal/deposit-modal.component";
 import { CalendarModalComponent } from "./calendar-modal/calendar-modal.component";
 import { ModalController } from "@ionic/angular";
 import { Component } from "@angular/core";
-import { DataService, Message } from "../services/data.service";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { CalendarOptions } from "@fullcalendar/angular";
 import { Clipboard } from "@angular/cdk/clipboard";
 
 @Component({

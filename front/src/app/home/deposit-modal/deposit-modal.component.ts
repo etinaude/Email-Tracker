@@ -1,7 +1,6 @@
-import { HomePage } from "./../home.page";
 import { Component, OnInit } from "@angular/core";
 
-var ip = "https://121.98.243.22/tracker/api/v1/";
+import { ip } from "./../../global";
 
 @Component({
   selector: "app-deposit-modal",
