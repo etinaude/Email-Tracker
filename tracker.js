@@ -124,33 +124,33 @@ APP.get(/\/tracker\/api\/v1\/history\/*/, (req, res) => {
 });
 
 APP.post(`${BASE}email`, (req, res) => {
-  const UUID = uuidv4();
+  const UUID = `id${uuidv4()}`;
 
-  const sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES ('${UUID}', '${req.body.title}', '${new Date().getTime()}', '0', '${req.body.sentTo}', 'email');`;
+  const sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES('${UUID}', '${req.body.title}', '${new Date().getTime()}', '0', '${req.body.sentTo}', 'email'); `;
 
   db.all(sql, [], (err, rows) => {
     if (err) console.log(err);
   });
 
-  // sql = `CREATE TABLE ${inp.key} (date varchar(255));`;
+  // sql = `CREATE TABLE ${ inp.key } (date varchar(255)); `;
 
   // db.all(sql, [], (err, rows) => {
   //   if (err) console.log(err);
   // });
 
-  res.json({ UUID });
+  res.json({ UUID: `${UUID}.png` });
 });
 
-APP.post(`${BASE}submit`, (req, res) => {
+APP.post(`${BASE} submit`, (req, res) => {
   var inp = JSON.parse(req.body[0]);
 
-  var sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES ('${inp.key}', '${inp.title}', '${inp.date}', '${inp.opens}', '${inp.sent}', '${inp.type}');`;
+  var sql = `INSERT INTO Trackers(key, title, date, opens, sent, type) VALUES('${inp.key}', '${inp.title}', '${inp.date}', '${inp.opens}', '${inp.sent}', '${inp.type}'); `;
 
   db.all(sql, [], (err, rows) => {
     if (err) console.log(err);
   });
 
-  sql = `CREATE TABLE ${inp.key} (date varchar(255));`;
+  sql = `CREATE TABLE ${inp.key} (date varchar(255)); `;
 
   db.all(sql, [], (err, rows) => {
     if (err) console.log(err);
