@@ -35,7 +35,7 @@ APP.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
 
 APP.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
   const id = req.url.split("/").pop().replace(".png", "");
-  var sql = `INSERT INTO ${id} VALUES (${Date.getTime()}); -- `;
+  var sql = `INSERT INTO ${id} VALUES (${(new Date).getTime()}); -- `;
 
   db.all(sql, [], (err, data) => {
     if (err) {

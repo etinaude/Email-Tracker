@@ -1,3 +1,31 @@
 {
-    "compile-hero.disable-compile-files-on-did-save-code": false
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "files.exclude": {
+        "**/.git": false,
+        "**/.svn": false,
+        "**/.hg": false,
+        "**/CVS": false,
+        "**/.DS_Store": false,
+        "**/Thumbs.db": false,
+        "**/.*/": false,
+        "**/.vscode": false,
+        "**/*.module.ts": false,
+        "**/*.spec.ts": false,
+        "**/coverage": false,
+        "**/dist": false,
+        "**/e2e": false,
+        "**/keys/": false,
+        "**/node_modules": false,
+        "**/packag*.json": false,
+        "**/platforms/": false,
+        "**/plugins/": false,
+        "**/ts*.json": false,
+        "**/typings/": false,
+        "**/www/": false,
+        "**/.classpath": false,
+        "**/.project": false,
+        "**/.settings": false,
+        "**/.factorypath": false
+    },
+    "explorerExclude.backup": null
 }
