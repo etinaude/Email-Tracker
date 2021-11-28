@@ -1,7 +1,7 @@
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const express = require("express");
-var sqlite3 = require("sqlite3").verbose();
-var cors = require("cors");
+const sqlite3 = require("sqlite3").verbose();
+const cors = require("cors");
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -11,10 +11,9 @@ const APP = express();
 const PORT = 3000;
 const BASE = "/tracker/api/v1/"
 
+const db = new sqlite3.Database("database.db");
 
 
-var file = "database.db";
-var db = new sqlite3.Database(file);
 APP.use(express.static("public"));
 APP.use(bodyParser.urlencoded({ extended: true }));
 APP.use(bodyParser.json());
@@ -22,7 +21,7 @@ APP.use(cors());
 // /\/api\/v1\/images\/*/
 
 APP.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
-  id = "id" + req.url.split("/id")[1];
+  const id = req.url.split("/").pop();
   var sql = `SELECT * FROM Trackers where key = "${id}"`;
 
   db.all(sql, [], (err, data) => {
@@ -36,7 +35,12 @@ APP.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
 
 APP.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
   var n = Date.now();
-  id = "id" + req.url.split("/id")[1].replace(".png", "");
+  const id = req.url.split("/").pop()
+  try {
+    id.replace(".png", "");
+  } catch (e) {
+    console.log("no .png")
+  }
 
   var sql = `INSERT INTO ${id} VALUES (${n}); -- `;
 
@@ -64,13 +68,12 @@ APP.get(`${BASE}all`, (req, res) => {
     if (err) {
       throw err;
     }
-    //console.log(data);
     res.json(data);
   });
 });
 
 APP.get(/\/tracker\/api\/v1\/reset\/*/, (req, res) => {
-  id = "id" + req.url.split("/id")[1].replace(".png", "");
+  const id = req.url.split("/").pop().replace(".png", "");
   var sql = `UPDATE Trackers SET opens = 0 where key = "${id}"`;
 
   db.all(sql, [], (err, data) => {
@@ -90,7 +93,7 @@ APP.get(/\/tracker\/api\/v1\/reset\/*/, (req, res) => {
 });
 
 APP.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
-  id = "id" + req.url.split("/id")[1];
+  const id = req.url.split("/").pop();
   var sql = `DELETE FROM Trackers WHERE key = "${id}"`;
 
   db.all(sql, [], (err, data) => {
@@ -111,7 +114,7 @@ APP.get(/\/tracker\/api\/v1\/remove\/*/, (req, res) => {
 });
 
 APP.get(/\/tracker\/api\/v1\/history\/*/, (req, res) => {
-  id = "id" + req.url.split("/id")[1];
+  const id = req.url.split("/").pop();
   var sql = `SELECT * FROM ${id}`;
 
   db.all(sql, [], (err, data) => {
