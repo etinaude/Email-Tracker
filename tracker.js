@@ -123,7 +123,7 @@ APP.post(`${BASE}email`, (req, res) => {
   const UUID = `id${uuidv4()}`.replaceAll("-", "");
 
 
-  const sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES('${UUID}', '${req.body.title}', '${new Date().getTime()}', '0', '${req.body.sentTo}', 'email'); `;
+  let sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES('${UUID}', '${req.body.title}', '${new Date().getTime()}', '0', '${req.body.sentTo}', 'email'); `;
 
   db.all(sql, [], (err, rows) => {
     if (err) console.log(err);
