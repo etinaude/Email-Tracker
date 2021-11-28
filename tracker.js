@@ -129,7 +129,7 @@ APP.post(`${BASE}email`, (req, res) => {
     if (err) console.log(err);
   });
 
-  sql = `CREATE TABLE ${inp.key} (date varchar(255)); `;
+  sql = `CREATE TABLE ${UUID} (date varchar(255)); `;
 
   db.all(sql, [], (err, rows) => {
     if (err) console.log(err);
