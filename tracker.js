@@ -2,16 +2,22 @@ var bodyParser = require("body-parser");
 const express = require("express");
 var sqlite3 = require("sqlite3").verbose();
 var cors = require("cors");
+const { v4: uuidv4 } = require('uuid');
+
+
 const PATH = "/images/base.png";
 const INDEX = "/front/www/index.html";
 const APP = express();
 const PORT = 3000;
 const BASE = "/tracker/api/v1/"
 
+
+
 var file = "database.db";
 var db = new sqlite3.Database(file);
 APP.use(express.static("public"));
 APP.use(bodyParser.urlencoded({ extended: true }));
+APP.use(bodyParser.json());
 APP.use(cors());
 // /\/api\/v1\/images\/*/
 
@@ -115,6 +121,24 @@ APP.get(/\/tracker\/api\/v1\/history\/*/, (req, res) => {
     //console.log(data);
     res.json(data);
   });
+});
+
+APP.post(`${BASE}email`, (req, res) => {
+  const UUID = uuidv4();
+
+  const sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES ('${UUID}', '${req.body.title}', '${new Date().getTime()}', '0', '${req.body.sentTo}', 'email');`;
+
+  db.all(sql, [], (err, rows) => {
+    if (err) console.log(err);
+  });
+
+  // sql = `CREATE TABLE ${inp.key} (date varchar(255));`;
+
+  // db.all(sql, [], (err, rows) => {
+  //   if (err) console.log(err);
+  // });
+
+  res.json({ UUID });
 });
 
 APP.post(`${BASE}submit`, (req, res) => {
