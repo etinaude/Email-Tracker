@@ -62,7 +62,7 @@ export class HomePage {
   }
 
   makeTable() {
-    window.location.reload();
+    // window.location.reload();
   }
 
   async openModal() {
