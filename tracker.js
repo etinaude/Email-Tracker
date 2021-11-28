@@ -34,15 +34,8 @@ APP.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {
 });
 
 APP.get(/\/tracker\/api\/v1\/openimage\/*/, (req, res) => {
-  var n = Date.now();
-  const id = req.url.split("/").pop()
-  try {
-    id.replace(".png", "");
-  } catch (e) {
-    console.log("no .png")
-  }
-
-  var sql = `INSERT INTO ${id} VALUES (${n}); -- `;
+  const id = req.url.split("/").pop().replace(".png", "");
+  var sql = `INSERT INTO ${id} VALUES (${Date.getTime()}); -- `;
 
   db.all(sql, [], (err, data) => {
     if (err) {
@@ -136,11 +129,11 @@ APP.post(`${BASE}email`, (req, res) => {
     if (err) console.log(err);
   });
 
-  // sql = `CREATE TABLE ${ inp.key } (date varchar(255)); `;
+  sql = `CREATE TABLE ${inp.key} (date varchar(255)); `;
 
-  // db.all(sql, [], (err, rows) => {
-  //   if (err) console.log(err);
-  // });
+  db.all(sql, [], (err, rows) => {
+    if (err) console.log(err);
+  });
 
   res.json({ UUID: `${UUID}.png` });
 });
