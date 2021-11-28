@@ -12,7 +12,7 @@ const swaggerDocument = require('./swagger.json');
 const PATH = "/images/base.png";
 const INDEX = "/front/www/index.html";
 const APP = express();
-const PORT = 3001;
+const PORT = 3000;
 const BASE = "/tracker/api/v1/"
 
 const db = new sqlite3.Database("database.db");
