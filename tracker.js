@@ -124,9 +124,8 @@ APP.get(/\/tracker\/api\/v1\/history\/*/, (req, res) => {
 });
 
 APP.post(`${BASE}email`, (req, res) => {
-  const UUID = `id${uuidv4()}`;
+  const UUID = `id${uuidv4()}`.replaceAll("-", "");
 
-  UUID.replaceAll("-", "");
 
   const sql = `INSERT INTO Trackers (key, title, date, opens, sent, type) VALUES('${UUID}', '${req.body.title}', '${new Date().getTime()}', '0', '${req.body.sentTo}', 'email'); `;
 
