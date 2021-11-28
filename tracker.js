@@ -4,11 +4,15 @@ const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 const { v4: uuidv4 } = require('uuid');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+
+const swaggerDocument = require('./swagger.json');
 
 const PATH = "/images/base.png";
 const INDEX = "/front/www/index.html";
 const APP = express();
-const PORT = 3000;
+const PORT = 3001;
 const BASE = "/tracker/api/v1/"
 
 const db = new sqlite3.Database("database.db");
@@ -18,6 +22,19 @@ APP.use(express.static("public"));
 APP.use(bodyParser.urlencoded({ extended: true }));
 APP.use(bodyParser.json());
 APP.use(cors());
+APP.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Hello World',
+      version: '1.0.0',
+    },
+  },
+  apis: ['./src/routes*.js'], // files containing annotations as above
+};
+
 // /\/api\/v1\/images\/*/
 
 APP.get(/\tracker\/api\/v1\/images\/*/, (req, res) => {

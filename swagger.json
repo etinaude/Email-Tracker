@@ -1,0 +1,178 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API for email tracker",
+    "version": "1.0.0",
+    "title": "Swagger Petstore",
+    "contact": {
+      "email": "eti@naude.dev"
+    },
+    "license": {
+      "name": "GNU PL 3.0"
+    }
+  },
+  "host": "back.etinaude.dev",
+  "basePath": "/tracker/api/v1",
+  "schemes": ["https", "http"],
+  "paths": {
+    "/all": {
+      "get": {
+        "summary": "get json of all",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+
+    "/openimage/{id}.png": {
+      "get": {
+        "summary": "Opens an Image",
+        "produces": ["image/png"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of image return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    },
+
+    "/reset/{id}": {
+      "get": {
+        "summary": "resets count on image",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of image return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+
+    "/history/{id}": {
+      "get": {
+        "summary": "Get image history",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of image",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+
+    "/remove/{id}": {
+      "get": {
+        "summary": "delete image and ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of image return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+
+    "/email": {
+      "post": {
+        "summary": "email api",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "title and sentTo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+
+    "/submit": {
+      "post": {
+        "summary": "create custom tracker",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "key title date opens sent type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  }
+}
